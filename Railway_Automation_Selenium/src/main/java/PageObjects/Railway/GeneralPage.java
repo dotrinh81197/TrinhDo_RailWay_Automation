@@ -4,14 +4,14 @@ import Constant.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class GeneralPage<webElement> {
+public class GeneralPage {
     //locators
     private final By tabLogin = By.xpath("//a[.='Login']");
     private final By tabLogout = By.xpath("//a[.='Log out']");
     private final By tabBookTicket = By.xpath("//a[.='Book ticket']");
     private final By tabPageActive = By.xpath("//li[@class='selected']/a");
-
     private final By lblWelcomeMessage = By.xpath("//div[@class='account']/strong[normalize-space()]");
+    private final By tabFaq = By.xpath("//a[.='FAQ']");
 
     //elements
     protected WebElement getTabLogin() {
@@ -34,12 +34,20 @@ public class GeneralPage<webElement> {
         return Constant.WEBDRIVER.findElement(tabPageActive);
     }
 
+    protected WebElement getTabFaq() {
+        return Constant.WEBDRIVER.findElement(tabFaq);
+    }
+
     //methods
     public String getWelcomeMessage() {
         return this.getLblWelcomeMessage().getText();
     }
 
-    public String getPageNameActive(){
+    public boolean checkWelcomeMsgDisplayed() {
+        return getLblWelcomeMessage().isDisplayed();
+    }
+
+    public String getPageNameActive() {
         return this.getTabPageActive().getText();
     }
 
@@ -48,16 +56,16 @@ public class GeneralPage<webElement> {
         return new LoginPage();
     }
 
-    public void gotoBookTicketPage(){
+    public void gotoFAQPage() {
+        this.getTabFaq().click();
+    }
+
+    public void gotoBookTicketPage() {
         this.getTabBookTicket().click();
     }
 
     public boolean isLoggedIn() {
-        return Constant.WEBDRIVER.findElements(tabLogout).size() !=0;
-    }
-
-    public boolean isLoginPageOpen() {
-        return getTabLogout().isDisplayed();
+        return Constant.WEBDRIVER.findElements(tabLogout).size() != 0;
     }
 
     public void logout() {
