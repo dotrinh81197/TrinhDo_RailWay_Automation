@@ -8,35 +8,37 @@ public class GeneralPage<webElement> {
     //locators
     private final By tabLogin = By.xpath("//a[.='Login']");
     private final By tabLogout = By.xpath("//a[.='Log out']");
-    private final By LblWelcomeMessage = By.xpath("//div[@class='account']/strong[normalize-space()]");
+    private final By lblWelcomeMessage = By.xpath("//div[@class='account']/strong[normalize-space()]");
 
     //elements
-    protected WebElement getTabLogin(){
+    protected WebElement getTabLogin() {
         return Constant.WEBDRIVER.findElement(tabLogin);
-
     }
 
-    protected WebElement getTabLogout(){
+    protected WebElement getTabLogout() {
         return Constant.WEBDRIVER.findElement(tabLogout);
-
     }
-    protected WebElement getLblWelcomeMessage(){
-        return Constant.WEBDRIVER.findElement(LblWelcomeMessage);
 
+    protected WebElement getLblWelcomeMessage() {
+        return Constant.WEBDRIVER.findElement(lblWelcomeMessage);
     }
 
     //methods
-    public String getWelcomeMessage(){
+    public String getWelcomeMessage() {
         return this.getLblWelcomeMessage().getText();
     }
 
-    public LoginPage gotoLoginPage(){
+    public LoginPage gotoLoginPage() {
         this.getTabLogin().click();
         return new LoginPage();
     }
 
-    public HomePage logout(){
+    public boolean isLoggedIn() {
+        return Constant.WEBDRIVER.findElements(tabLogout).size() !=0;
+    }
+
+    public void logout() {
         this.getTabLogout().click();
-        return new HomePage();
     }
 }
+

@@ -45,6 +45,7 @@ public class LoginPage extends GeneralPage{
     }
 
     public String getLoginErrorMessage(){
+
         return this.getLblLoginErrorMsg().getText();
     }
 }
