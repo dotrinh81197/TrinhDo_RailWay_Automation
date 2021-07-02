@@ -30,25 +30,26 @@ public class LoginPage extends GeneralPage{
 
     public WebElement getLblLoginErrorMsg(){
         return Constant.WEBDRIVER.findElement(_lblLoginErrorMsg);
-
     }
 
     //methods
 
     public HomePage login(String username, String password){
-
         //submit Login credentials
         this.getTxtUsername().sendKeys(username);
         this.getTxtPassword().sendKeys(password);
         this.getBtnLogin().click();
-
         //land on Home page
         return new HomePage();
+    }
 
+    public void multipleLogin(int times){
+        for (int i = 1; i < times; i++) {
+            this.login(Constant.USERNAME, Constant.DATA_INVALID_PASSWORD);
+        }
     }
 
     public String getLoginErrorMessage(){
-
         return this.getLblLoginErrorMsg().getText();
     }
 }

@@ -9,9 +9,8 @@ public class GeneralPage {
     private final By tabLogin = By.xpath("//a[.='Login']");
     private final By tabLogout = By.xpath("//a[.='Log out']");
     private final By tabBookTicket = By.xpath("//a[.='Book ticket']");
-    private final By tabPageActive = By.xpath("//li[@class='selected']/a");
     private final By lblWelcomeMessage = By.xpath("//div[@class='account']/strong[normalize-space()]");
-    private final By tabFaq = By.xpath("//a[.='FAQ']");
+    private final By tabPageActive = By.xpath("//li[@class='selected']/a");
 
     //elements
     protected WebElement getTabLogin() {
@@ -34,10 +33,6 @@ public class GeneralPage {
         return Constant.WEBDRIVER.findElement(tabPageActive);
     }
 
-    protected WebElement getTabFaq() {
-        return Constant.WEBDRIVER.findElement(tabFaq);
-    }
-
     //methods
     public String getWelcomeMessage() {
         return this.getLblWelcomeMessage().getText();
@@ -47,30 +42,28 @@ public class GeneralPage {
         return getLblWelcomeMessage().isDisplayed();
     }
 
-    public String getPageNameActive() {
-        return this.getTabPageActive().getText();
-    }
-
     public LoginPage gotoLoginPage() {
         this.getTabLogin().click();
         return new LoginPage();
     }
 
-    public void gotoFAQPage() {
-        this.getTabFaq().click();
+    public boolean isAtLoginPage() {
+        String pageTitle = Constant.WEBDRIVER.getTitle();
+        return pageTitle.contains("Login");
     }
 
     public void gotoBookTicketPage() {
         this.getTabBookTicket().click();
     }
 
-    public boolean isLoggedIn() {
+    public boolean isLogoutTabExist() {
         return Constant.WEBDRIVER.findElements(tabLogout).size() != 0;
     }
 
     public void logout() {
-        this.getTabLogout().click();
-
+        if (this.isLogoutTabExist()) {
+            this.getTabLogout().click();
+        }
     }
 }
 

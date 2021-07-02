@@ -31,19 +31,14 @@ public class LoginTest {
         homePage.open();
     }
 
-
     @AfterMethod
     public void afterMethod() {
         System.out.println("Post-condition");
-        if (homePage.isLoggedIn()) {
-            homePage.logout();
-        }
+        homePage.logout();
     }
 
-    @Test
+    @Test(description = "TC01-User can log into Railway with valid username and password")
     public void TC01() {
-        System.out.println("TC01-User can log into Railway with valid username and password");
-
         LoginPage loginPage = homePage.gotoLoginPage();
         loginPage.login(Constant.USERNAME, Constant.PASSWORD);
         String actualMsg = loginPage.getWelcomeMessage();
@@ -53,53 +48,37 @@ public class LoginTest {
         } else {
             System.out.println("Bug UI");
         }
-
     }
 
-
-    @Test
+    @Test(description = "TC02-User can't login with blank \"Username\" textbox")
     public void TC02() {
-        System.out.println("TC02-User can't login with blank \"Username\" textbox");
 
         LoginPage loginpage = homePage.gotoLoginPage();
-        loginpage.login("", Constant.PASSWORD);
+        loginpage.login(Constant.DATA_BLANK_USERNAME, Constant.PASSWORD);
         String loginErrorMessage = loginpage.getLoginErrorMessage();
         String expectMsg = Constant.MSG_BLANK_USER_PASSWORD;
-
         Assert.assertEquals(loginErrorMessage, expectMsg, "LoginErrorMessage display not correct");
     }
 
-    @Test
+    @Test(description = "User cannot log into Railway with invalid password")
     public void TC03() {
-        System.out.println("User cannot log into Railway with invalid password");
-
         LoginPage loginpage = homePage.gotoLoginPage();
-
         loginpage.login(Constant.USERNAME, Constant.DATA_INVALID_PASSWORD);
-
         String loginErrorMessage = loginpage.getLoginErrorMessage();
         String expectMsg = Constant.MSG_INVALID_USER_PASSWORD;
-        Assert.assertEquals(loginErrorMessage, expectMsg, "Known bug");
+        Assert.assertEquals(loginErrorMessage, expectMsg, "LoginErrorMessage display not correct");
     }
 
-    @Test
+    @Test(description = "Login page displays when un-logged User clicks on \"Book ticket\" tab")
     public void TC04() {
-        System.out.println("Login page displays when un-logged User clicks on \"Book ticket\" tab");
-
         homePage.gotoBookTicketPage();
-        Assert.assertEquals(homePage.getPageNameActive(), "Login", "Login Page is not displayed");
+        Assert.assertTrue(homePage.isAtLoginPage(), "Login Page is not displayed");
     }
 
-    @Test
+    @Test(description = "System shows message when user enters wrong password several times")
     public void TC05() {
-        System.out.println("System shows message when user enters wrong password several times");
-
         LoginPage loginpage = homePage.gotoLoginPage();
-
-        for (int i = 1; i < 4; i++) {
-            loginpage.login(Constant.USERNAME, Constant.DATA_INVALID_PASSWORD);
-        }
-
+        loginpage.multipleLogin(4);
         String loginErrorMessage = loginpage.getLoginErrorMessage();
         String expectMsg = Constant.MSG_RUN_OUT_OF_TRY_LOGIN;
         Assert.assertEquals(loginErrorMessage, expectMsg, "Known bug");
