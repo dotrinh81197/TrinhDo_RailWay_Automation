@@ -1,8 +1,9 @@
-package Railway;
+package Testcases.Railway;
 
-import Common.Utilities;
-import Constant.Constant;
-import com.google.common.base.Verify;
+import Common.Common.Utilities;
+import Common.Constant.Constant;
+import PageObjects.Railway.HomePage;
+import PageObjects.Railway.LoginPage;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -46,11 +47,10 @@ public class LoginTest {
         LoginPage loginPage = homePage.gotoLoginPage();
         loginPage.login(Constant.USERNAME, Constant.PASSWORD);
         String actualMsg = loginPage.getWelcomeMessage();
-        String expectMsg = "Welcome " + Constant.USERNAME;
-        if (loginPage.checkWelcomeMsgDisplayed()){
+        String expectMsg = String.format(Constant.MSG_WELCOME_USER, Constant.USERNAME);
+        if (loginPage.checkWelcomeMsgDisplayed()) {
             Assert.assertEquals(actualMsg, expectMsg, "Welcome message is not displayed as expected ");
-        }
-        else {
+        } else {
             System.out.println("Bug UI");
         }
 
@@ -62,11 +62,9 @@ public class LoginTest {
         System.out.println("TC02-User can't login with blank \"Username\" textbox");
 
         LoginPage loginpage = homePage.gotoLoginPage();
-        String username = "";
-        loginpage.login(username, Constant.PASSWORD);
-
+        loginpage.login("", Constant.PASSWORD);
         String loginErrorMessage = loginpage.getLoginErrorMessage();
-        String expectMsg = "There was a problem with your login and/or errors exist in your form.";
+        String expectMsg = Constant.MSG_BLANK_USER_PASSWORD;
 
         Assert.assertEquals(loginErrorMessage, expectMsg, "LoginErrorMessage display not correct");
     }
@@ -77,10 +75,10 @@ public class LoginTest {
 
         LoginPage loginpage = homePage.gotoLoginPage();
 
-        loginpage.login(Constant.USERNAME, "123");
+        loginpage.login(Constant.USERNAME, Constant.DATA_INVALID_PASSWORD);
 
         String loginErrorMessage = loginpage.getLoginErrorMessage();
-        String expectMsg = "There was a problem with your login and/or errors exist in your form.";
+        String expectMsg = Constant.MSG_INVALID_USER_PASSWORD;
         Assert.assertEquals(loginErrorMessage, expectMsg, "Known bug");
     }
 
@@ -99,11 +97,11 @@ public class LoginTest {
         LoginPage loginpage = homePage.gotoLoginPage();
 
         for (int i = 1; i < 4; i++) {
-            loginpage.login(Constant.USERNAME, "123");
+            loginpage.login(Constant.USERNAME, Constant.DATA_INVALID_PASSWORD);
         }
 
         String loginErrorMessage = loginpage.getLoginErrorMessage();
-        String expectMsg = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
+        String expectMsg = Constant.MSG_RUN_OUT_OF_TRY_LOGIN;
         Assert.assertEquals(loginErrorMessage, expectMsg, "Known bug");
     }
 }
