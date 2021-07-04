@@ -2,8 +2,10 @@ package Testcases.Railway;
 
 import Common.Common.Utilities;
 import Common.Constant.Constant;
+import PageObjects.Railway.GeneralPage;
 import PageObjects.Railway.HomePage;
 import PageObjects.Railway.LoginPage;
+import PageObjects.Railway.MyTicketPage;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -11,6 +13,7 @@ import org.testng.annotations.*;
 
 public class LoginTest {
     HomePage homePage = new HomePage();
+    GeneralPage generalPage = new GeneralPage();
 
 
     @BeforeClass
@@ -77,4 +80,22 @@ public class LoginTest {
         String expectMsg = Constant.MSG_RUN_OUT_OF_TRY_LOGIN;
         Assert.assertEquals(loginErrorMessage, expectMsg, "LoginErrorMessage display not correct");
     }
+
+    @Test(description = "Additional pages display once user logged in")
+    public void TC06() {
+        LoginPage loginpage = homePage.gotoLoginPage();
+        loginpage.login(Constant.USERNAME, Constant.PASSWORD);
+        boolean checkTabMyTicketDisplay = loginpage.checkTabMyTicketDisplay();
+        Assert.assertTrue(checkTabMyTicketDisplay, "Tab My Ticket not display");
+        boolean checkTabLogOutDisplay = loginpage.checkTabLogOutDisplay();
+        Assert.assertTrue(checkTabLogOutDisplay, "Tab Logout not display");
+
+        homePage.gotoMyTicketPage();
+        Assert.assertTrue(homePage.isAtMyTicketPage(), "Not directed to My ticket page");
+
+        homePage.gotoChangePasswordPage();
+        Assert.assertTrue(homePage.isAtChangePasswordPage(), "Not directed to Change Password page");
+    }
+
+
 }
