@@ -11,9 +11,10 @@ public class GeneralPage {
     private final By tabLogout = By.xpath("//a[.='Log out']");
     private final By tabBookTicket = By.xpath("//a[.='Book ticket']");
     private final By tabMyTicket = By.xpath("//a[.='My ticket']");
+    private final By tabRegister = By.xpath("//a[.='Register']");
     private final By tabChangePassword = By.xpath("//a[.='Change password']");
     private final By lblWelcomeMessage = By.xpath("//div[@class='account']/strong[normalize-space()]");
-//    private final By tabPageActive = By.xpath("//li[@class='selected']/a");
+    private final By tabSelected = By.xpath("//li[@class='selected']/a");
 
     //elements
     protected WebElement getTabLogin() {
@@ -28,6 +29,10 @@ public class GeneralPage {
         return Constant.WEBDRIVER.findElement(tabBookTicket);
     }
 
+    protected WebElement getTabRegister() {
+        return Constant.WEBDRIVER.findElement(tabRegister);
+    }
+
     protected WebElement getLblWelcomeMessage() {
         return Constant.WEBDRIVER.findElement(lblWelcomeMessage);
     }
@@ -35,11 +40,18 @@ public class GeneralPage {
     protected WebElement getTabMyTicket() {
         return Constant.WEBDRIVER.findElement(tabMyTicket);
     }
+
     protected WebElement getTabChangePassword() {
         return Constant.WEBDRIVER.findElement(tabChangePassword);
     }
 
+    protected WebElement getTabSelected(){
+        return Constant.WEBDRIVER.findElement(tabSelected);
+    }
     //methods
+    public String getTabNameSelected() {
+        return this.getTabSelected().getText();
+    }
     public String getWelcomeMessage() {
         return this.getLblWelcomeMessage().getText();
     }
@@ -62,8 +74,14 @@ public class GeneralPage {
 
     }
 
-    public void gotoChangePasswordPage(){
+    public RegisterPage gotoRegisterPage(){
+        this.getTabRegister().click();
+        return new RegisterPage();
+    }
+
+    public ChangePasswordPage gotoChangePasswordPage(){
         this.getTabChangePassword().click();
+        return new ChangePasswordPage();
     }
 
     public boolean isLogoutTabExist() {
@@ -90,7 +108,7 @@ public class GeneralPage {
     public boolean checkTabLogOutDisplay(){
         boolean isTabExist= false;
         try {
-            isTabExist = getTabLogout().isDisplayed();
+            isTabExist = this.getTabLogout().isDisplayed();
         }
         catch (NoSuchElementException exception){
             isTabExist= false;
@@ -98,10 +116,26 @@ public class GeneralPage {
         return isTabExist;
     }
 
+    public boolean checkTabChangePasswordDisplay(){
+        boolean isTabExist= false;
+        try {
+            isTabExist =  this.getTabChangePassword().isDisplayed();
+        }
+        catch (NoSuchElementException exception){
+            isTabExist= false;
+        }
+        return isTabExist;
+
+    }
+
     public boolean isAtLoginPage() {
         String pageTitle = Constant.WEBDRIVER.getTitle();
         return pageTitle.contains("Login");
     }
+
+//    public boolean isAtHomePage(){
+//       this.getTabSelected()
+//    }
 
     public boolean isAtMyTicketPage() {
         String pageTitle = Constant.WEBDRIVER.getTitle();

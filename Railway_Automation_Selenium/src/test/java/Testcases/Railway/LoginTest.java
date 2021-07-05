@@ -1,33 +1,14 @@
 package Testcases.Railway;
 
-import Common.Common.Utilities;
 import Common.Constant.Constant;
-import PageObjects.Railway.GeneralPage;
-import PageObjects.Railway.HomePage;
 import PageObjects.Railway.LoginPage;
-import PageObjects.Railway.MyTicketPage;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 
-public class LoginTest {
-    HomePage homePage = new HomePage();
-    GeneralPage generalPage = new GeneralPage();
-
-
-    @BeforeClass
-    public void beforeClass() {
-        System.setProperty("webdriver.chrome.driver", Utilities.getProjectPath());
-
-        Constant.WEBDRIVER = new ChromeDriver();
-        Constant.WEBDRIVER.manage().window().maximize();
-    }
-
-    @AfterClass
-    public void afterClass() {
-        Constant.WEBDRIVER.quit();
-    }
+public class LoginTest extends TestBase {
 
     @BeforeMethod
     public void beforeMethod() {
@@ -96,6 +77,19 @@ public class LoginTest {
         homePage.gotoChangePasswordPage();
         Assert.assertTrue(homePage.isAtChangePasswordPage(), "Not directed to Change Password page");
     }
+
+    @Test(description = "User can't login with an account hasn't been activated")
+    public void TC08() {
+        LoginPage loginpage = homePage.gotoLoginPage();
+        loginpage.login(Constant.USERNAME_NOT_ACTIVATED, Constant.PASSWORD_NOT_ACTIVATED);
+        boolean checkLoginErrorMessageExist = loginpage.checkLoginErrorMessageExist();
+        System.out.println(checkLoginErrorMessageExist);
+        String expectedMsg = Constant.MSG_INVALID_USER_PASSWORD;
+        if (checkLoginErrorMessageExist) {
+            Assert.assertEquals(loginpage.getLoginErrorMessage(), expectedMsg, "LoginErrorMessage display not correct");
+        }
+    }
+
 
 
 }
