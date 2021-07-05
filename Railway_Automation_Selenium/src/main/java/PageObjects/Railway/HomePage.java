@@ -1,6 +1,6 @@
-package Railway;
+package PageObjects.Railway;
 
-import Constant.Constant;
+import Common.Constant.Constant;
 
 public class HomePage extends GeneralPage {
     //locators
@@ -13,6 +13,7 @@ public class HomePage extends GeneralPage {
         return this;
 
     }
+
 
 
 

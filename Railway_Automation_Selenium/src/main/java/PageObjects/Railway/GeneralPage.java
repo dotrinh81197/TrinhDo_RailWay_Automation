@@ -1,16 +1,18 @@
-package Railway;
+package PageObjects.Railway;
 
-import Constant.Constant;
+import Common.Constant.Constant;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
-public class GeneralPage<webElement> {
+public class GeneralPage {
     //locators
     private final By tabLogin = By.xpath("//a[.='Login']");
     private final By tabLogout = By.xpath("//a[.='Log out']");
     private final By tabBookTicket = By.xpath("//a[.='Book ticket']");
-    private final By tabPageActive = By.xpath("//li[@class='selected']/a");
-
+    private final By tabMyTicket = By.xpath("//a[.='My ticket']");
+    private final By tabRegister = By.xpath("//a[.='Register']");
+    private final By tabChangePassword = By.xpath("//a[.='Change password']");
     private final By lblWelcomeMessage = By.xpath("//div[@class='account']/strong[normalize-space()]");
 
     //elements
@@ -26,21 +28,30 @@ public class GeneralPage<webElement> {
         return Constant.WEBDRIVER.findElement(tabBookTicket);
     }
 
+    protected WebElement getTabRegister() {
+        return Constant.WEBDRIVER.findElement(tabRegister);
+    }
+
     protected WebElement getLblWelcomeMessage() {
         return Constant.WEBDRIVER.findElement(lblWelcomeMessage);
     }
 
-    protected WebElement getTabPageActive() {
-        return Constant.WEBDRIVER.findElement(tabPageActive);
+    protected WebElement getTabMyTicket() {
+        return Constant.WEBDRIVER.findElement(tabMyTicket);
+    }
+
+    protected WebElement getTabChangePassword() {
+        return Constant.WEBDRIVER.findElement(tabChangePassword);
     }
 
     //methods
+
     public String getWelcomeMessage() {
         return this.getLblWelcomeMessage().getText();
     }
 
-    public String getPageNameActive(){
-        return this.getTabPageActive().getText();
+    public boolean checkWelcomeMsgDisplayed() {
+        return getLblWelcomeMessage().isDisplayed();
     }
 
     public LoginPage gotoLoginPage() {
@@ -48,21 +59,67 @@ public class GeneralPage<webElement> {
         return new LoginPage();
     }
 
-    public void gotoBookTicketPage(){
+    public void gotoBookTicketPage() {
         this.getTabBookTicket().click();
     }
 
-    public boolean isLoggedIn() {
-        return Constant.WEBDRIVER.findElements(tabLogout).size() !=0;
+    public void gotoMyTicketPage(){
+        this.getTabMyTicket().click();
+
     }
 
-    public boolean isLoginPageOpen() {
-        return getTabLogout().isDisplayed();
+    public RegisterPage gotoRegisterPage(){
+        this.getTabRegister().click();
+        return new RegisterPage();
+    }
+
+    public ChangePasswordPage gotoChangePasswordPage(){
+        this.getTabChangePassword().click();
+        return new ChangePasswordPage();
+    }
+
+    public boolean isLogoutTabExist() {
+        return Constant.WEBDRIVER.findElements(tabLogout).size() != 0;
     }
 
     public void logout() {
-        this.getTabLogout().click();
-
+        if (this.isLogoutTabExist()) {
+            this.getTabLogout().click();
+        }
     }
+
+    public boolean isTabMyTicketDisplay(){
+        boolean isTabExist= false;
+        try {
+            isTabExist = getTabMyTicket().isDisplayed();
+        }
+        catch (NoSuchElementException exception){
+            isTabExist= false;
+        }
+        return isTabExist;
+    }
+
+    public boolean isTabLogOutDisplay(){
+        boolean isTabExist= false;
+        try {
+            isTabExist = this.getTabLogout().isDisplayed();
+        }
+        catch (NoSuchElementException exception){
+            isTabExist= false;
+        }
+        return isTabExist;
+    }
+
+    public boolean isTabChangePasswordDisplay(){
+        boolean isTabExist= false;
+        try {
+            isTabExist =  this.getTabChangePassword().isDisplayed();
+        }
+        catch (NoSuchElementException exception){
+            isTabExist= false;
+        }
+        return isTabExist;
+    }
+
 }
 
