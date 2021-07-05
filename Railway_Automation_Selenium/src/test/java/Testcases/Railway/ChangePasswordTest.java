@@ -4,6 +4,8 @@ import Common.Constant.Constant;
 import PageObjects.Railway.ChangePasswordPage;
 import PageObjects.Railway.LoginPage;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ChangePasswordTest extends TestBase {
@@ -11,12 +13,25 @@ public class ChangePasswordTest extends TestBase {
     protected String newPassword = Constant.NEW_PASSWORD;
     protected String confirmPassword = newPassword;
 
+
+    @BeforeMethod
+    public void beforeMethod() {
+        System.out.println("Pre-condition");
+        homePage.open();
+    }
+
+    @AfterMethod
+    public void afterMethod() {
+        System.out.println("Post-condition");
+        homePage.logout();
+    }
+
     @Test(description = "User can change password")
     public void TC09() {
-        homePage.open();
+
         LoginPage loginpage = homePage.gotoLoginPage();
         loginpage.login(Constant.USERNAME, Constant.PASSWORD);
-        homePage.checkTabChangePasswordDisplay();
+        homePage.isTabChangePasswordDisplay();
         //if-else o day
         ChangePasswordPage changePasswordPage = homePage.gotoChangePasswordPage();
         changePasswordPage.changePassword(currentPassword, newPassword, confirmPassword);

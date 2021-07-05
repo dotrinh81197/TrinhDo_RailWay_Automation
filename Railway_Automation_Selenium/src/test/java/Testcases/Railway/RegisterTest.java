@@ -5,29 +5,39 @@ import Common.Constant.Constant;
 import PageObjects.Railway.LoginPage;
 import PageObjects.Railway.RegisterPage;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class RegisterTest extends TestBase {
 
+    @BeforeMethod
+    public void beforeMethod() {
+        System.out.println("Pre-condition");
+        homePage.open();
+    }
+
+    @AfterMethod
+    public void afterMethod() {
+        System.out.println("Post-condition");
+        homePage.logout();
+    }
+
 
     @Test(description = "User can create new account")
     public void TC07() {
-        homePage.open();
-        String REGISTER_EMAIL = Utilities.generateRandomEmail();
-        String REGISTER_PASSWORD = Constant.PASSWORD;
-        String REGISTER_CONFIRM_PASSWORD = REGISTER_PASSWORD;
-        String REGISTER_PID = Constant.PID;
+
         RegisterPage registerPage = homePage.gotoRegisterPage();
-        registerPage.registerAccount(REGISTER_EMAIL, REGISTER_PASSWORD, REGISTER_CONFIRM_PASSWORD, REGISTER_PID);
+        String registerEmail = Constant.DATA_REGISTER_EMAIL;
+        registerPage.registerAccount(registerEmail, Constant.DATA_REGISTER_PASSWORD, Constant.DATA_REGISTER_CONFIRM_PASSWORD, Constant.DATA_REGISTER_PID);
         String registerSuccessMessage = registerPage.getRegisterSuccessMsg();
         String expectMsg=Constant.MSG_REGISTER_SUCCESSFULLY;
-        Assert.assertEquals(registerSuccessMessage,expectMsg,"Message display not correct");
+        Assert.assertEquals(registerSuccessMessage,expectMsg,"Register success message display not correct");
 
         LoginPage loginPage = registerPage.gotoLoginPage();
-        loginPage.login(REGISTER_EMAIL,REGISTER_PASSWORD);
-
-        loginPage.checkTabLogOutDisplay();
-        Assert.assertTrue(loginPage.checkTabLogOutDisplay(),"Login successfully");
+        loginPage.login(registerEmail,Constant.DATA_REGISTER_PASSWORD);
+        loginPage.isTabLogOutDisplay();
+        Assert.assertTrue(loginPage.isTabLogOutDisplay(),"User can login with this account");
     }
 
 }

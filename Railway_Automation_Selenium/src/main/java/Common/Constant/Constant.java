@@ -1,5 +1,6 @@
 package Common.Constant;
 
+import Common.Common.Utilities;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Constant {
@@ -8,10 +9,9 @@ public class Constant {
     public static final String RAIlWAY_URL = "http://www.railway2.somee.com/Page/HomePage.cshtml";
     public static final String USERNAME = "trinhdo@gmail.com";
     public static final String PASSWORD = "12345678";
-    public static final String PID = "12345678";
-    public static final String USERNAME_NOT_ACTIVATED = "trinhdo@gmail.com";
-    public static final String PASSWORD_NOT_ACTIVATED = "12345678";
     public static final String NEW_PASSWORD = "12345678";
+    public static final String EMAIL_MAIN = "dotrinh81197@gmail.com";
+
 
     public static String MSG_WELCOME_USER = "Welcome %s";
     public static final String MSG_BLANK_USER_PASSWORD = "There was a problem with your login and/or errors exist in your form.";
@@ -21,5 +21,10 @@ public class Constant {
     public static final String MSG_CHANGE_PASSWORD_SUCCESSFULLY = "Your password has been updated!";
     public static final String DATA_INVALID_PASSWORD = "123";
     public static final String DATA_BLANK_USERNAME = "";
+    public static final String DATA_REGISTER_EMAIL = Utilities.generateRandomEmail();
+    public static final String DATA_REGISTER_PASSWORD = "12345678";
+    public static final String DATA_REGISTER_CONFIRM_PASSWORD = "12345678";
+     public static final String DATA_REGISTER_PID = "12345678";
+
 
 }

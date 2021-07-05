@@ -1,7 +1,9 @@
 package Testcases.Railway;
 
+import Common.Common.Utilities;
 import Common.Constant.Constant;
 import PageObjects.Railway.LoginPage;
+import PageObjects.Railway.RegisterPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -66,30 +68,38 @@ public class LoginTest extends TestBase {
     public void TC06() {
         LoginPage loginpage = homePage.gotoLoginPage();
         loginpage.login(Constant.USERNAME, Constant.PASSWORD);
-        boolean checkTabMyTicketDisplay = loginpage.checkTabMyTicketDisplay();
+        boolean checkTabMyTicketDisplay = loginpage.isTabMyTicketDisplay();
         Assert.assertTrue(checkTabMyTicketDisplay, "Tab My Ticket not display");
-        boolean checkTabLogOutDisplay = loginpage.checkTabLogOutDisplay();
+        boolean checkTabLogOutDisplay = loginpage.isTabLogOutDisplay();
         Assert.assertTrue(checkTabLogOutDisplay, "Tab Logout not display");
 
         homePage.gotoMyTicketPage();
-        Assert.assertTrue(homePage.isAtMyTicketPage(), "Not directed to My ticket page");
+        boolean isAtMyTicketPage = Utilities.isAtPage("My Ticket");
+        Assert.assertTrue(isAtMyTicketPage, "Not directed to My ticket page");
 
         homePage.gotoChangePasswordPage();
-        Assert.assertTrue(homePage.isAtChangePasswordPage(), "Not directed to Change Password page");
+        boolean isAtChangePasswordPage = Utilities.isAtPage("Change Password");
+        Assert.assertTrue(isAtChangePasswordPage, "Not directed to Change Password page");
     }
 
     @Test(description = "User can't login with an account hasn't been activated")
     public void TC08() {
-        LoginPage loginpage = homePage.gotoLoginPage();
-        loginpage.login(Constant.USERNAME_NOT_ACTIVATED, Constant.PASSWORD_NOT_ACTIVATED);
-        boolean checkLoginErrorMessageExist = loginpage.checkLoginErrorMessageExist();
-        System.out.println(checkLoginErrorMessageExist);
+        //pre-condition
+        RegisterPage registerPage = homePage.gotoRegisterPage();
+        String registerEmail = Constant.DATA_REGISTER_EMAIL;
+        registerPage.registerAccount(registerEmail, Constant.DATA_REGISTER_PASSWORD, Constant.DATA_REGISTER_CONFIRM_PASSWORD, Constant.DATA_REGISTER_PID);
+
+        LoginPage loginpage = registerPage.gotoLoginPage();
+        loginpage.login(registerEmail, Constant.DATA_REGISTER_PASSWORD);
+        boolean isAtLoginPage = Utilities.isAtPage("Login");
+        Assert.assertTrue(isAtLoginPage, "User can login with account has not been activated");
+
+        boolean checkLoginErrorMessageExist = loginpage.isLoginErrorMessageExist();
         String expectedMsg = Constant.MSG_INVALID_USER_PASSWORD;
         if (checkLoginErrorMessageExist) {
             Assert.assertEquals(loginpage.getLoginErrorMessage(), expectedMsg, "LoginErrorMessage display not correct");
         }
     }
-
 
 
 }

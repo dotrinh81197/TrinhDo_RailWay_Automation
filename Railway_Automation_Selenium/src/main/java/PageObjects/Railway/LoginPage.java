@@ -31,7 +31,9 @@ public class LoginPage extends GeneralPage {
     }
 
     public WebElement getLblLoginErrorMsg() {
-        return Constant.WEBDRIVER.findElement(_lblLoginErrorMsg);
+
+            return  Constant.WEBDRIVER.findElement(_lblLoginErrorMsg);
+
     }
 
     //methods
@@ -55,16 +57,16 @@ public class LoginPage extends GeneralPage {
         return this.getLblLoginErrorMsg().getText();
     }
 
-    public boolean checkLoginErrorMessageExist() {
+    public boolean isLoginErrorMessageExist() {
         boolean isElementExist = false;
         try {
-            WebElement loginErrorMsg = getLblLoginErrorMsg();
-            System.out.println(loginErrorMsg);
-            if (loginErrorMsg.isDisplayed()){
-                 isElementExist =  true;
-            }
-            else {
-                 isElementExist =  false;
+            if (this.getLblLoginErrorMsg() != null) {
+                WebElement loginErrorMsg = this.getLblLoginErrorMsg();
+                if (loginErrorMsg.isDisplayed()) {
+                    isElementExist = true;
+                } else {
+                    isElementExist = false;
+                }
             }
 
         } catch (NoSuchElementException e) {

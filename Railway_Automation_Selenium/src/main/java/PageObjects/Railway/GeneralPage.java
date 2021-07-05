@@ -14,7 +14,6 @@ public class GeneralPage {
     private final By tabRegister = By.xpath("//a[.='Register']");
     private final By tabChangePassword = By.xpath("//a[.='Change password']");
     private final By lblWelcomeMessage = By.xpath("//div[@class='account']/strong[normalize-space()]");
-    private final By tabSelected = By.xpath("//li[@class='selected']/a");
 
     //elements
     protected WebElement getTabLogin() {
@@ -45,13 +44,8 @@ public class GeneralPage {
         return Constant.WEBDRIVER.findElement(tabChangePassword);
     }
 
-    protected WebElement getTabSelected(){
-        return Constant.WEBDRIVER.findElement(tabSelected);
-    }
     //methods
-    public String getTabNameSelected() {
-        return this.getTabSelected().getText();
-    }
+
     public String getWelcomeMessage() {
         return this.getLblWelcomeMessage().getText();
     }
@@ -94,7 +88,7 @@ public class GeneralPage {
         }
     }
 
-    public boolean checkTabMyTicketDisplay(){
+    public boolean isTabMyTicketDisplay(){
         boolean isTabExist= false;
         try {
             isTabExist = getTabMyTicket().isDisplayed();
@@ -105,7 +99,7 @@ public class GeneralPage {
         return isTabExist;
     }
 
-    public boolean checkTabLogOutDisplay(){
+    public boolean isTabLogOutDisplay(){
         boolean isTabExist= false;
         try {
             isTabExist = this.getTabLogout().isDisplayed();
@@ -116,7 +110,7 @@ public class GeneralPage {
         return isTabExist;
     }
 
-    public boolean checkTabChangePasswordDisplay(){
+    public boolean isTabChangePasswordDisplay(){
         boolean isTabExist= false;
         try {
             isTabExist =  this.getTabChangePassword().isDisplayed();
@@ -125,26 +119,7 @@ public class GeneralPage {
             isTabExist= false;
         }
         return isTabExist;
-
     }
 
-    public boolean isAtLoginPage() {
-        String pageTitle = Constant.WEBDRIVER.getTitle();
-        return pageTitle.contains("Login");
-    }
-
-//    public boolean isAtHomePage(){
-//       this.getTabSelected()
-//    }
-
-    public boolean isAtMyTicketPage() {
-        String pageTitle = Constant.WEBDRIVER.getTitle();
-        return pageTitle.contains("My Ticket");
-    }
-
-    public boolean isAtChangePasswordPage(){
-        String pageTitle = Constant.WEBDRIVER.getTitle();
-        return pageTitle.contains("Change Password");
-    }
 }
 
