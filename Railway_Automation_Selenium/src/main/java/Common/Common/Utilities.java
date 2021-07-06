@@ -2,7 +2,9 @@ package Common.Common;
 
 import Common.Constant.Constant;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
 import java.util.Random;
 
@@ -33,7 +35,11 @@ public class Utilities {
         return emailRandom;
     }
 
-//    public static void pageDownEnd() {
-//        Constant.WEBDRIVER.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
-//    }
+    public static void scrollAndClickIntoView(WebElement element) {
+        JavascriptExecutor je = Constant.WEBDRIVER;
+        je.executeScript("arguments[0].scrollIntoView(true);", element);
+        element.click();
+    }
+
+
 }

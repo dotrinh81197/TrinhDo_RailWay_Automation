@@ -52,4 +52,6 @@ public class ChangePasswordPage {
     public String getChangePasswordSuccessMsg(){
         return this.getLblMessageSuccess().getText();
     }
+
+
 }

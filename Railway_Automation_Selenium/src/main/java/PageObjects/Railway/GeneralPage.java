@@ -78,6 +78,8 @@ public class GeneralPage {
         return new ChangePasswordPage();
     }
 
+
+
     public boolean isLogoutTabExist() {
         return Constant.WEBDRIVER.findElements(tabLogout).size() != 0;
     }
