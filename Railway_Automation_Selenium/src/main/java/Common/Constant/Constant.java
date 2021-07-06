@@ -10,7 +10,7 @@ public class Constant {
     public static final String USERNAME = "trinhdo@gmail.com";
     public static final String VALID_PASSWORD = "12345678";
     public static final String NEW_PASSWORD = "12345678";
-//    public static final String EMAIL_MAIN = "dotrinh81197@gmail.com";
+    public static final String MAIN_EMAIL = "warchelsea097";
 
 
     public static String MSG_WELCOME_USER = "Welcome %s";
@@ -19,12 +19,17 @@ public class Constant {
     public static final String MSG_RUN_OUT_OF_TRY_LOGIN = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
     public static final String MSG_REGISTER_SUCCESSFULLY = "Thank you for registering your account";
     public static final String MSG_CHANGE_PASSWORD_SUCCESSFULLY = "Your password has been updated!";
+    public static final String MSG_REGISTER_ERROR = "There're errors in the form. Please correct the errors and try again.";
+
     public static final String DATA_INVALID_PASSWORD = "123";
     public static final String DATA_BLANK_USERNAME = "";
     public static final String DATA_REGISTER_EMAIL = Utilities.generateRandomEmail();
     public static final String DATA_REGISTER_PASSWORD = "12345678";
+    public static final String DATA_EMPTY_PASSWORD = "";
     public static final String DATA_REGISTER_CONFIRM_PASSWORD = "12345678";
-     public static final String DATA_REGISTER_PID = "12345678";
+    public static final String DATA_REGISTER_INVALID_CONFIRM_PASSWORD = "12348";
+    public static final String DATA_REGISTER_PID = "12345678";
+    public static final String DATA_EMPTY_PID = "";
 
 
 }
