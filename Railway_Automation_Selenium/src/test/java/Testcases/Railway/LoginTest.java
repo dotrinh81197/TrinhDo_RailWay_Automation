@@ -27,20 +27,17 @@ public class LoginTest extends TestBase {
     @Test(description = "TC01-User can log into Railway with valid username and password")
     public void TC01() {
         LoginPage loginpage = homePage.gotoLoginPage();
-        loginpage.login(Constant.USERNAME, Constant.PASSWORD);
+        loginpage.login(Constant.USERNAME, Constant.VALID_PASSWORD);
         String actualMsg = loginpage.getWelcomeMessage();
         String expectMsg = String.format(Constant.MSG_WELCOME_USER, Constant.USERNAME);
-        if (loginpage.checkWelcomeMsgDisplayed()) {
-            Assert.assertEquals(actualMsg, expectMsg, "Welcome message is not displayed as expected ");
-        } else {
-            System.out.println("Bug UI");
-        }
+        Assert.assertEquals(actualMsg, expectMsg, "Welcome message is not displayed as expected ");
+
     }
 
     @Test(description = "TC02-User can't login with blank \"Username\" textbox")
     public void TC02() {
         LoginPage loginpage = homePage.gotoLoginPage();
-        loginpage.login(Constant.DATA_BLANK_USERNAME, Constant.PASSWORD);
+        loginpage.login(Constant.DATA_BLANK_USERNAME, Constant.VALID_PASSWORD);
         String loginErrorMessage = loginpage.getLoginErrorMessage();
         String expectMsg = Constant.MSG_BLANK_USER_PASSWORD;
         Assert.assertEquals(loginErrorMessage, expectMsg, "LoginErrorMessage display not correct");
@@ -67,7 +64,7 @@ public class LoginTest extends TestBase {
     @Test(description = "Additional pages display once user logged in")
     public void TC06() {
         LoginPage loginpage = homePage.gotoLoginPage();
-        loginpage.login(Constant.USERNAME, Constant.PASSWORD);
+        loginpage.login(Constant.USERNAME, Constant.VALID_PASSWORD);
         boolean checkTabMyTicketDisplay = loginpage.isTabMyTicketDisplay();
         Assert.assertTrue(checkTabMyTicketDisplay, "Tab My Ticket not display");
         boolean checkTabLogOutDisplay = loginpage.isTabLogOutDisplay();
@@ -96,9 +93,8 @@ public class LoginTest extends TestBase {
 
         boolean checkLoginErrorMessageExist = loginpage.isLoginErrorMessageExist();
         String expectedMsg = Constant.MSG_INVALID_USER_PASSWORD;
-        if (checkLoginErrorMessageExist) {
-            Assert.assertEquals(loginpage.getLoginErrorMessage(), expectedMsg, "LoginErrorMessage display not correct");
-        }
+        Assert.assertEquals(loginpage.getLoginErrorMessage(), expectedMsg, "LoginErrorMessage display not correct");
+
     }
 
 

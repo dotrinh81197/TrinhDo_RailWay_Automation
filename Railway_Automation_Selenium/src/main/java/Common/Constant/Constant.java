@@ -8,9 +8,9 @@ public class Constant {
     public static ChromeDriver WEBDRIVER;
     public static final String RAIlWAY_URL = "http://www.railway2.somee.com/Page/HomePage.cshtml";
     public static final String USERNAME = "trinhdo@gmail.com";
-    public static final String PASSWORD = "12345678";
+    public static final String VALID_PASSWORD = "12345678";
     public static final String NEW_PASSWORD = "12345678";
-    public static final String EMAIL_MAIN = "dotrinh81197@gmail.com";
+//    public static final String EMAIL_MAIN = "dotrinh81197@gmail.com";
 
 
     public static String MSG_WELCOME_USER = "Welcome %s";
