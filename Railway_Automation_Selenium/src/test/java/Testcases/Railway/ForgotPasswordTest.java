@@ -32,7 +32,21 @@ public class ForgotPasswordTest extends TestBase {
     public void TC12(){
         //pre-condition
         RegisterPage registerPage = homePage.gotoRegisterPage();
-        String registerEmail = Constant.DATA_REGISTER_EMAIL;
+        String registerEmail = Utilities.generateRandomEmail();;
+        registerPage.registerAccount(registerEmail, Constant.DATA_REGISTER_PASSWORD, Constant.DATA_REGISTER_CONFIRM_PASSWORD, Constant.DATA_REGISTER_PID);
+
+        homePage.gotoLoginPage();
+        loginPage.gotoForgotPasswordPage();
+        forgotPasswordPage.submitEmail(registerEmail);
+
+        Assert.assertTrue(Utilities.isAtPage("Password Change Form"),"Bug Mailbox unavailable. The server response was: that smtp username is not allowed to send");
+    }
+
+    @Test(description = "Errors display if password and confirm password don't match when resetting password")
+    public void TC13(){
+        //pre-condition
+        RegisterPage registerPage = homePage.gotoRegisterPage();
+        String registerEmail = Utilities.generateRandomEmail();;
         registerPage.registerAccount(registerEmail, Constant.DATA_REGISTER_PASSWORD, Constant.DATA_REGISTER_CONFIRM_PASSWORD, Constant.DATA_REGISTER_PID);
 
         homePage.gotoLoginPage();

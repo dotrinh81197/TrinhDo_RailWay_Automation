@@ -18,8 +18,8 @@ public class TestBase {
         Constant.WEBDRIVER.manage().window().maximize();
     }
 
-//    @AfterClass
-//    public void afterClass() {
-//        Constant.WEBDRIVER.quit();
-//    }
+    @AfterClass
+    public void afterClass() {
+        Constant.WEBDRIVER.quit();
+    }
 }

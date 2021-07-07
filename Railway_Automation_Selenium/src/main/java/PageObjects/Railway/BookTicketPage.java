@@ -15,8 +15,6 @@ public class BookTicketPage {
     private final By _comboBoxTicketAmount = By.xpath("//select[@name='TicketAmount']");
     private final By _btnBookTicket = By.xpath("//input[@type='submit']");
     private final By _lblBookTicketSuccessMsg = By.xpath("//div[@id='content']/h1");
-//    private final By _tableTicketInfo = By.xpath("//table[@class ='MyTable WideTable']");
-//    private final By _rowTicketInfo = By.xpath("//table[@class ='MyTable WideTable']/tbody/tr[1]/following-sibling::tr");
     private final By _cellDepartStation = By.xpath("//table[@class ='MyTable WideTable']/tbody/tr[1]/following-sibling::tr/td[1]");
     private final By _cellDepartDate = By.xpath("//table[@class ='MyTable WideTable']/tbody/tr[1]/following-sibling::tr/td[4]");
     private final By _cellArriveStation = By.xpath("//table[@class ='MyTable WideTable']/tbody/tr[1]/following-sibling::tr/td[2]");
@@ -54,15 +52,6 @@ public class BookTicketPage {
         return Constant.WEBDRIVER.findElement(_lblBookTicketSuccessMsg);
     }
 
-//
-//    protected WebElement getTableTicketInfo() {
-//        return Constant.WEBDRIVER.findElement(_tableTicketInfo);
-//    }
-//
-//    protected WebElement getRowTicketInfo() {
-//        return Constant.WEBDRIVER.findElement(_rowTicketInfo);
-//    }
-
     protected WebElement getCellDepartStation() {
         return Constant.WEBDRIVER.findElement(_cellDepartStation);
     }
@@ -89,35 +78,33 @@ public class BookTicketPage {
         Utilities.scrollAndClickIntoView(this.getComboBoxDepartDate());
         Select departDate = new Select(this.getComboBoxDepartDate());
         departDate.selectByVisibleText(value);
-
-
     }
 
     public void getDepartStation(String value) {
         Utilities.scrollAndClickIntoView(this.getComboBoxDepartStation());
-        Select departDate = new Select(Constant.WEBDRIVER.findElement(_comboBoxDepartStation));
-        departDate.selectByVisibleText(value);
+        Select departStation = new Select(Constant.WEBDRIVER.findElement(_comboBoxDepartStation));
+        departStation.selectByVisibleText(value);
     }
-
 
     public void getArriveStation(String value) {
         Utilities.scrollAndClickIntoView(this.getComboBoxArriveStation());
-        Select departDate = new Select(Constant.WEBDRIVER.findElement(_comboBoxArriveStation));
-        departDate.selectByVisibleText(value);
+        Select arriveStation = new Select(Constant.WEBDRIVER.findElement(_comboBoxArriveStation));
+        arriveStation.selectByVisibleText(value);
     }
+
     public void getSeatType(String value) {
         Utilities.scrollAndClickIntoView(this.getComboBoxSeatType());
-        Select departDate = new Select(Constant.WEBDRIVER.findElement(_comboBoxSeatType));
-        departDate.selectByVisibleText(value);
+        Select seatType = new Select(Constant.WEBDRIVER.findElement(_comboBoxSeatType));
+        seatType.selectByVisibleText(value);
     }
 
     public void getTicketAmount(String value) {
         Utilities.scrollAndClickIntoView(this.getComboBoxTicketAmount());
-        Select departDate = new Select(Constant.WEBDRIVER.findElement(_comboBoxTicketAmount));
-        departDate.selectByVisibleText(value);
+        Select ticketAmount = new Select(Constant.WEBDRIVER.findElement(_comboBoxTicketAmount));
+        ticketAmount.selectByVisibleText(value);
     }
 
-    public void fillBookTicketInfo(String departDate, String departFrom, String arriveAt, String seatType, String ticketAmount){
+    public void fillBookTicketInfo(String departDate, String departFrom, String arriveAt, String seatType, String ticketAmount) {
         this.getDepartDate(departDate);
         this.getDepartStation(departFrom);
         this.getArriveStation(arriveAt);
@@ -125,33 +112,45 @@ public class BookTicketPage {
         this.getTicketAmount(ticketAmount);
     }
 
-    public void submitBookTicketInfo(String departDate, String departFrom, String arriveAt, String seatType, String ticketAmount){
+    public void submitBookTicketInfo(String departDate, String departFrom, String arriveAt, String seatType, String ticketAmount) {
         this.fillBookTicketInfo(departDate, departFrom, arriveAt, seatType, ticketAmount);
         Utilities.scrollAndClickIntoView(getBtnBookTicket());
     }
 
-    public String getMessageBookTicketSuccess(){
+    public String getMessageBookTicketSuccess() {
         return this.getLblBookTicketSuccess().getText();
     }
 
-    public String getDepartDate(){
+    public String getDepartDate() {
         return this.getCellDepartDate().getText();
     }
 
-    public String getDepartStation(){
+    public String getDepartStation() {
         return this.getCellDepartStation().getText();
     }
 
-    public String getArriveStation(){
+    public String getArriveStation() {
         return this.getCellArriveStation().getText();
     }
 
-    public String getSeatType(){
+    public String getSeatType() {
         return this.getCellSeatType().getText();
     }
 
-    public String getAmount(){
+    public String getAmount() {
         return this.getCellAmount().getText();
+    }
+
+    public String getSelectedOptionDepartFrom() {
+        Utilities.scrollAndClickIntoView(this.getComboBoxDepartStation());
+        Select departDate = new Select(Constant.WEBDRIVER.findElement(_comboBoxDepartStation));
+        return departDate.getFirstSelectedOption().getText();
+    }
+
+    public String getSelectedOptionArriveAt() {
+        Utilities.scrollAndClickIntoView(this.getComboBoxArriveStation());
+        Select departDate = new Select(Constant.WEBDRIVER.findElement(_comboBoxArriveStation));
+        return departDate.getFirstSelectedOption().getText();
     }
 
 

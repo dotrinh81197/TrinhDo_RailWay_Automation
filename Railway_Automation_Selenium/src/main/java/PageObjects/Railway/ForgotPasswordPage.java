@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class ForgotPasswordPage extends GeneralPage {
-//locators
+    //locators
     private final By _txtEmailAddress = By.id("email");
 
     private final By _btnSubmitEmail = By.xpath("//input[@type='submit']");
@@ -23,12 +23,7 @@ public class ForgotPasswordPage extends GeneralPage {
     //methods
 
     public void submitEmail(String registerEmail){
-//        String email =Constant.MAIN_EMAIL;
-//        email +="+"+ registerEmail;
-//        System.out.println(email);
-
         this.getTxtEmailAddress().sendKeys(registerEmail);
         Utilities.scrollAndClickIntoView(getBtnSubmitEmail());
-
     }
 }

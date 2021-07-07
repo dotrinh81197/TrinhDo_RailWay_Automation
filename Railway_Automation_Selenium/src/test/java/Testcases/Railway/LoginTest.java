@@ -28,16 +28,17 @@ public class LoginTest extends TestBase {
     public void TC01() {
         LoginPage loginpage = homePage.gotoLoginPage();
         loginpage.login(Constant.USERNAME, Constant.VALID_PASSWORD);
+        Assert.assertTrue(loginpage.isWelcomeMsgDisplayed(),"Welcome message not display");
         String actualMsg = loginpage.getWelcomeMessage();
         String expectMsg = String.format(Constant.MSG_WELCOME_USER, Constant.USERNAME);
         Assert.assertEquals(actualMsg, expectMsg, "Welcome message is not displayed as expected ");
-
     }
 
-    @Test(description = "TC02-User can't login with blank \"Username\" textbox")
+    @Test(description = "TC02-User can't login with blank \"Username\" text box")
     public void TC02() {
         LoginPage loginpage = homePage.gotoLoginPage();
         loginpage.login(Constant.DATA_BLANK_USERNAME, Constant.VALID_PASSWORD);
+        Assert.assertTrue(loginpage.isLoginErrorMessageExist(),"Login error message not display");
         String loginErrorMessage = loginpage.getLoginErrorMessage();
         String expectMsg = Constant.MSG_BLANK_USER_PASSWORD;
         Assert.assertEquals(loginErrorMessage, expectMsg, "LoginErrorMessage display not correct");
@@ -83,7 +84,7 @@ public class LoginTest extends TestBase {
     public void TC08() {
         //pre-condition
         RegisterPage registerPage = homePage.gotoRegisterPage();
-        String registerEmail = Constant.DATA_REGISTER_EMAIL;
+        String registerEmail = Utilities.generateRandomEmail();
         registerPage.registerAccount(registerEmail, Constant.DATA_REGISTER_PASSWORD, Constant.DATA_REGISTER_CONFIRM_PASSWORD, Constant.DATA_REGISTER_PID);
 
         LoginPage loginpage = registerPage.gotoLoginPage();

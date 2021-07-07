@@ -12,6 +12,7 @@ public class GeneralPage {
     private final By tabBookTicket = By.xpath("//a[.='Book ticket']");
     private final By tabMyTicket = By.xpath("//a[.='My ticket']");
     private final By tabRegister = By.xpath("//a[.='Register']");
+    private final By tabTimetable = By.xpath("//a[.='Timetable']");
     private final By tabChangePassword = By.xpath("//a[.='Change password']");
     private final By lblWelcomeMessage = By.xpath("//div[@class='account']/strong[normalize-space()]");
 
@@ -39,6 +40,9 @@ public class GeneralPage {
     protected WebElement getTabMyTicket() {
         return Constant.WEBDRIVER.findElement(tabMyTicket);
     }
+    protected WebElement getTabTimetable() {
+        return Constant.WEBDRIVER.findElement(tabTimetable);
+    }
 
     protected WebElement getTabChangePassword() {
         return Constant.WEBDRIVER.findElement(tabChangePassword);
@@ -50,7 +54,7 @@ public class GeneralPage {
         return this.getLblWelcomeMessage().getText();
     }
 
-    public boolean checkWelcomeMsgDisplayed() {
+    public boolean isWelcomeMsgDisplayed() {
         return getLblWelcomeMessage().isDisplayed();
     }
 
@@ -65,6 +69,11 @@ public class GeneralPage {
 
     public void gotoMyTicketPage(){
         this.getTabMyTicket().click();
+
+    }
+
+    public void gotoTimetablePage(){
+        this.getTabTimetable().click();
 
     }
 
