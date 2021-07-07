@@ -18,6 +18,10 @@ public class Utilities {
     }
 
     public static boolean isAtPage(String pageName){
+        if (pageName.equals("Home")){
+            String titleHomePage ="Selenium Automation";
+            return Constant.WEBDRIVER.getTitle().contains(titleHomePage);
+        }
         return Constant.WEBDRIVER.getTitle().contains(pageName);
     }
 

@@ -90,8 +90,6 @@ public class LoginTest extends TestBase {
         loginpage.login(registerEmail, Constant.DATA_REGISTER_PASSWORD);
         boolean isAtLoginPage = Utilities.isAtPage("Login");
         Assert.assertTrue(isAtLoginPage, "User can login with account has not been activated");
-
-        boolean checkLoginErrorMessageExist = loginpage.isLoginErrorMessageExist();
         String expectedMsg = Constant.MSG_INVALID_USER_PASSWORD;
         Assert.assertEquals(loginpage.getLoginErrorMessage(), expectedMsg, "LoginErrorMessage display not correct");
 
