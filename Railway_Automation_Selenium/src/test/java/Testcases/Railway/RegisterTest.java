@@ -1,5 +1,6 @@
 package Testcases.Railway;
 
+import Common.Common.Utilities;
 import Common.Constant.Constant;
 import PageObjects.Railway.LoginPage;
 import PageObjects.Railway.RegisterPage;
@@ -25,7 +26,7 @@ public class RegisterTest extends TestBase {
     @Test(description = "User can create new account")
     public void TC07() {
         RegisterPage registerPage = homePage.gotoRegisterPage();
-        String registerEmail = Constant.DATA_REGISTER_EMAIL;
+        String registerEmail = Utilities.generateRandomEmail();;
         registerPage.registerAccount(registerEmail, Constant.DATA_REGISTER_PASSWORD, Constant.DATA_REGISTER_CONFIRM_PASSWORD, Constant.DATA_REGISTER_PID);
         String registerSuccessMessage = registerPage.getRegisterSuccessMsg();
         String expectMsg=Constant.MSG_REGISTER_SUCCESSFULLY;
@@ -40,7 +41,7 @@ public class RegisterTest extends TestBase {
     @Test(description = "User can't create account with \"Confirm password\" is not the same with \"Password\"")
     public void TC10(){
         RegisterPage registerPage = homePage.gotoRegisterPage();
-        String email = Constant.DATA_REGISTER_EMAIL;
+        String email = Utilities.generateRandomEmail();;
         registerPage.registerAccount(email,Constant.DATA_REGISTER_PASSWORD,Constant.DATA_REGISTER_INVALID_CONFIRM_PASSWORD,Constant.DATA_REGISTER_PID);
         String registerErrorMessage = registerPage.getRegisterErrorMsg();
         String expectMsg=Constant.MSG_REGISTER_ERROR;
@@ -51,7 +52,7 @@ public class RegisterTest extends TestBase {
 
     public void TC11(){
         RegisterPage registerPage = homePage.gotoRegisterPage();
-        String email = Constant.DATA_REGISTER_EMAIL;
+        String email = Utilities.generateRandomEmail();;
         registerPage.registerAccount(email, Constant.DATA_EMPTY_PASSWORD,Constant.DATA_EMPTY_PASSWORD,Constant.DATA_EMPTY_PID);
         String registerErrorMessage = registerPage.getRegisterErrorMsg();
         String expectMsg=Constant.MSG_REGISTER_ERROR;
@@ -64,11 +65,5 @@ public class RegisterTest extends TestBase {
         String errorPidMessage = registerPage.getRegisterErrorPid();
         String expectMsgPid = "Invalid ID length";
         Assert.assertEquals(errorPidMessage,expectMsgPid,"Pid error message display not correct");
-
-
     }
-
-
-
-
 }

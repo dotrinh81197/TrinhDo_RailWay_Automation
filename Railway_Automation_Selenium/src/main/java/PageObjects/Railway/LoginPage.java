@@ -18,17 +18,14 @@ public class LoginPage extends GeneralPage {
     //elements
     public WebElement getTxtUsername() {
         return Constant.WEBDRIVER.findElement(_txtUsername);
-
     }
 
     public WebElement getTxtPassword() {
         return Constant.WEBDRIVER.findElement(_textPassword);
-
     }
 
     public WebElement getBtnLogin() {
         return Constant.WEBDRIVER.findElement(_btnLogin);
-
     }
 
     public WebElement getLblLoginErrorMsg() {
@@ -43,6 +40,7 @@ public class LoginPage extends GeneralPage {
     public void gotoForgotPasswordPage(){
         this.getLinkForgotPasswordPage().click();
     }
+
     public HomePage login(String username, String password) {
         //submit Login credentials
         this.getTxtUsername().sendKeys(username);
@@ -67,11 +65,7 @@ public class LoginPage extends GeneralPage {
         try {
             if (this.getLblLoginErrorMsg() != null) {
                 WebElement loginErrorMsg = this.getLblLoginErrorMsg();
-                if (loginErrorMsg.isDisplayed()) {
-                    isElementExist = true;
-                } else {
-                    isElementExist = false;
-                }
+                isElementExist = loginErrorMsg.isDisplayed();
             }
 
         } catch (NoSuchElementException e) {
