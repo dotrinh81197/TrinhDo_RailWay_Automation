@@ -60,17 +60,17 @@ public class LoginPage extends GeneralPage {
         return this.getLblLoginErrorMsg().getText();
     }
 
-    public boolean isLoginErrorMessageExist() {
-        boolean isElementExist = false;
+    public boolean isLoginErrorMessageDisplay() {
+        boolean isElementDisplay = false;
         try {
             if (this.getLblLoginErrorMsg() != null) {
                 WebElement loginErrorMsg = this.getLblLoginErrorMsg();
-                isElementExist = loginErrorMsg.isDisplayed();
+                isElementDisplay = loginErrorMsg.isDisplayed();
             }
 
         } catch (NoSuchElementException e) {
-            isElementExist = false;
+            isElementDisplay = false;
         }
-        return isElementExist;
+        return isElementDisplay;
     }
 }

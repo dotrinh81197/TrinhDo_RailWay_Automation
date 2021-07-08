@@ -5,12 +5,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
-import java.util.TimeZone;
 
 public class Utilities {
 
@@ -18,7 +15,7 @@ public class Utilities {
     protected static final String digits = "0123456789";
 
     public static String getProjectPath() {
-        return "src/main/java/WebDriver/chromedriver.exe";
+        return "src/main/resources/WebDriver/chromedriver.exe";
     }
 
     public static boolean isAtPage(String pageName) {
@@ -30,17 +27,17 @@ public class Utilities {
     }
 
     public static String generateRandomEmail() {
-        String emailRandom = "";
+        StringBuilder emailRandom = new StringBuilder();
 
         Random rnd = new Random();
         for (int i = 0; i < 6; i++) {
             int indexText = rnd.nextInt(alpha.length() - 1);
-            emailRandom += Character.toString(alpha.charAt(indexText));
+            emailRandom.append(alpha.charAt(indexText));
             int indexNumber = rnd.nextInt(digits.length() - 1);
-            emailRandom += Character.toString(digits.charAt(indexNumber));
+            emailRandom.append(digits.charAt(indexNumber));
         }
-        emailRandom = emailRandom + "@gmail.com";
-        return emailRandom;
+        emailRandom.append("@gmail.com");
+        return emailRandom.toString();
     }
 
     public static void scrollAndClickIntoView(WebElement element) {
@@ -57,8 +54,7 @@ public class Utilities {
         c.add(Calendar.DATE, daysNumber);
         date = c.getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("M/dd/yyyy");
-        String strReturnDate = formatter.format(date);
-        return strReturnDate;
+        return formatter.format(date);
     }
 
 }

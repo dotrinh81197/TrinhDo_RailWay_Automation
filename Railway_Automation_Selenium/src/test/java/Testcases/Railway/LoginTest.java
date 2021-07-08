@@ -28,7 +28,7 @@ public class LoginTest extends TestBase {
     public void TC01() {
         LoginPage loginpage = homePage.gotoLoginPage();
         loginpage.login(Constant.USERNAME, Constant.VALID_PASSWORD);
-        Assert.assertTrue(loginpage.isWelcomeMsgDisplayed(),"Welcome message not display");
+        Assert.assertTrue(loginpage.isWelcomeMsgDisplayed(), "Welcome message not display");
         String actualMsg = loginpage.getWelcomeMessage();
         String expectMsg = String.format(Constant.MSG_WELCOME_USER, Constant.USERNAME);
         Assert.assertEquals(actualMsg, expectMsg, "Welcome message is not displayed as expected ");
@@ -38,7 +38,7 @@ public class LoginTest extends TestBase {
     public void TC02() {
         LoginPage loginpage = homePage.gotoLoginPage();
         loginpage.login(Constant.DATA_BLANK_USERNAME, Constant.VALID_PASSWORD);
-        Assert.assertTrue(loginpage.isLoginErrorMessageExist(),"Login error message not display");
+        Assert.assertTrue(loginpage.isLoginErrorMessageDisplay(), "Login error message not display");
         String loginErrorMessage = loginpage.getLoginErrorMessage();
         String expectMsg = Constant.MSG_BLANK_USER_PASSWORD;
         Assert.assertEquals(loginErrorMessage, expectMsg, "LoginErrorMessage display not correct");
@@ -56,7 +56,7 @@ public class LoginTest extends TestBase {
     @Test(description = "System shows message when user enters wrong password several times")
     public void TC05() {
         LoginPage loginpage = homePage.gotoLoginPage();
-        loginpage.multipleLogin(4);
+        loginpage.multipleLogin(Constant.TIMES_LOGIN);
         String loginErrorMessage = loginpage.getLoginErrorMessage();
         String expectMsg = Constant.MSG_RUN_OUT_OF_TRY_LOGIN;
         Assert.assertEquals(loginErrorMessage, expectMsg, "LoginErrorMessage display not correct");
@@ -66,31 +66,27 @@ public class LoginTest extends TestBase {
     public void TC06() {
         LoginPage loginpage = homePage.gotoLoginPage();
         loginpage.login(Constant.USERNAME, Constant.VALID_PASSWORD);
-        boolean checkTabMyTicketDisplay = loginpage.isTabMyTicketDisplay();
-        Assert.assertTrue(checkTabMyTicketDisplay, "Tab My Ticket not display");
-        boolean checkTabLogOutDisplay = loginpage.isTabLogOutDisplay();
-        Assert.assertTrue(checkTabLogOutDisplay, "Tab Logout not display");
+
+        Assert.assertTrue(loginpage.isTabMyTicketDisplay(), "Tab My Ticket not display");
+        Assert.assertTrue(loginpage.isTabLogOutDisplay(), "Tab Logout not display");
 
         homePage.gotoMyTicketPage();
-        boolean isAtMyTicketPage = Utilities.isAtPage("My Ticket");
-        Assert.assertTrue(isAtMyTicketPage, "Not directed to My ticket page");
+        Assert.assertTrue(Utilities.isAtPage("My Ticket"), "Not directed to My ticket page");
 
         homePage.gotoChangePasswordPage();
-        boolean isAtChangePasswordPage = Utilities.isAtPage("Change Password");
-        Assert.assertTrue(isAtChangePasswordPage, "Not directed to Change Password page");
+        Assert.assertTrue(Utilities.isAtPage("Change Password"), "Not directed to Change Password page");
     }
 
     @Test(description = "User can't login with an account hasn't been activated")
     public void TC08() {
-        //pre-condition
+
         RegisterPage registerPage = homePage.gotoRegisterPage();
         String registerEmail = Utilities.generateRandomEmail();
         registerPage.registerAccount(registerEmail, Constant.DATA_REGISTER_PASSWORD, Constant.DATA_REGISTER_CONFIRM_PASSWORD, Constant.DATA_REGISTER_PID);
 
         LoginPage loginpage = registerPage.gotoLoginPage();
         loginpage.login(registerEmail, Constant.DATA_REGISTER_PASSWORD);
-        boolean isAtLoginPage = Utilities.isAtPage("Login");
-        Assert.assertTrue(isAtLoginPage, "User can login with account has not been activated");
+        Assert.assertTrue(Utilities.isAtPage("Login"), "User can login with account has not been activated");
         String expectedMsg = Constant.MSG_INVALID_USER_PASSWORD;
         Assert.assertEquals(loginpage.getLoginErrorMessage(), expectedMsg, "LoginErrorMessage display not correct");
 

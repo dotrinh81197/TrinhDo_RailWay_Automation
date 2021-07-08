@@ -4,6 +4,7 @@ import Common.Common.Utilities;
 import Common.Constant.Constant;
 import PageObjects.Railway.BookTicketPage;
 import PageObjects.Railway.LoginPage;
+import PageObjects.Railway.MyTicketPage;
 import PageObjects.Railway.TimetablePage;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -72,4 +73,26 @@ public class BookTicketTest extends TestBase {
         Assert.assertEquals(bookTicketPage.getSelectedOptionDepartFrom(), departFrom, "Depart Station not the same in Timetable");
         Assert.assertEquals(bookTicketPage.getSelectedOptionArriveAt(), arriveAt, "Arrive Station not the same in Timetable");
     }
+
+    @Test(description = "User can cancel a ticket")
+    public void TC16(){
+        LoginPage loginpage = homePage.gotoLoginPage();
+        loginpage.login(Constant.USERNAME, Constant.VALID_PASSWORD);
+        Assert.assertTrue(Utilities.isAtPage("Home"), "Login not successfully");
+        homePage.gotoBookTicketPage();
+        BookTicketPage bookTicketPage = new BookTicketPage();
+        String departDate = Utilities.getTodayPlusDays(Constant.DAYS_NUMBER);
+        String departFrom = Constant.DATA_BOOK_DEPART_FROM;
+        String arriveAt = Constant.DATA_BOOK_ARRIVE_AT;
+        String seatType = Constant.DATA_SEAT_TYPE;
+        String ticketAmount = Constant.DATA_TICKET_AMOUNT;
+
+        bookTicketPage.submitBookTicketInfo(departDate, departFrom, arriveAt, seatType, ticketAmount);
+        homePage.gotoMyTicketPage();
+        MyTicketPage myTicketPage = new MyTicketPage();
+        myTicketPage.cancelTicket(departFrom, arriveAt);
+        Assert.assertTrue(myTicketPage.isTicketDisappear(departFrom, arriveAt),"Ticket still display");
+
+    }
+
 }

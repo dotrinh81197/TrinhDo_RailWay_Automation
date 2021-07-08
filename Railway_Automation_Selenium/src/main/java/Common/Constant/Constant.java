@@ -10,6 +10,8 @@ public class Constant {
     public static final String USERNAME = "trinhdo@gmail.com";
     public static final String VALID_PASSWORD = "12345678";
     public static final String NEW_PASSWORD = "12345678";
+    public static final Integer TIMES_LOGIN = 4;
+    public static final Integer DAYS_NUMBER = 5;
 //    public static final String MAIN_EMAIL = "warchelsea097";
 
 
@@ -34,8 +36,8 @@ public class Constant {
     public static final String DATA_BOOK_ARRIVE_AT = "Nha Trang";
     public static final String DATA_CHECK_DEPART_FROM = "Huế";
     public static final String DATA_CHECK_ARRIVE_AT = "Sài Gòn";
-    public static final String DATA_SEAT_TYPE= "Soft bed with air conditioner";
-    public static final String DATA_TICKET_AMOUNT= "1";
+    public static final String DATA_SEAT_TYPE = "Soft bed with air conditioner";
+    public static final String DATA_TICKET_AMOUNT = "1";
 
 
 }
