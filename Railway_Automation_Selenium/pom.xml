@@ -11,6 +11,7 @@
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -34,18 +35,6 @@
             <version>7.1.0</version>
             <scope>compile</scope>
         </dependency>
-
-        <!--        <dependency>-->
-        <!--            <groupId>com.aventstack</groupId>-->
-        <!--            <artifactId>extentreports</artifactId>-->
-        <!--            <version>${version}</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>com.aventstack</groupId>-->
-        <!--            <artifactId>extentreports-pro</artifactId>-->
-        <!--            <version>${version}</version>-->
-        <!--        </dependency>-->
-        <!--         https://mvnrepository.com/artifact/com.aventstack/extentreports -->
 
 
     </dependencies>

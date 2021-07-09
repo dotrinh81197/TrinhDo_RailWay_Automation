@@ -11,42 +11,56 @@ public class MyTicketPage {
     //locators
 
     //elements
-    public WebElement getBtnCancelTicketOfRoute(String departStation, String arriveStation) {
-        String xpath1 = "//table/tbody/tr/td[text()='";
-        String xpath2 = "']/following::td[text()='";
-        String xpath3 = "']/following::td[8]/input[@value='Cancel']";
-        String resultXpath = xpath1 + departStation + xpath2 + arriveStation + xpath3;
-        By btnCancelTicketOfRoute = By.xpath(resultXpath);
-        return Constant.WEBDRIVER.findElement(btnCancelTicketOfRoute);
-    }
+//    public WebElement getBtnCancelTicketOfRoute(String departStation, String arriveStation) {
+//        String xpath1 = "//table/tbody/tr/td[text()='";
+//        String xpath2 = "']/following::td[text()='";
+//        String xpath3 = "']/following::td[8]/input[@value='Cancel']";
+//        String resultXpath = xpath1 + departStation + xpath2 + arriveStation + xpath3;
+//        By btnCancelTicketOfRoute = By.xpath(resultXpath);
+//        return Constant.WEBDRIVER.findElement(btnCancelTicketOfRoute);
+//    }
 
-    protected WebElement getRowTicket(String departStation, String arriveStation){
+    protected WebElement getRowTicket(Ticket ticket){
         String xpath1 = "//table/tbody/tr/td[text()='";
         String xpath2 = "']/following::td[text()='";
         String xpath3 = "']/..";
-        String resultXpath = xpath1 + departStation + xpath2 + arriveStation + xpath3;
+        String resultXpath = xpath1 + ticket.getTicketDepartFrom() + xpath2 + ticket.getTicketArriveAt() + xpath3;
         By rowTicketOfRout = By.xpath(resultXpath);
         return Constant.WEBDRIVER.findElement(rowTicketOfRout);
 
     }
 
     //methods
-    public void cancelTicket(String departStation, String arriveStation) {
-        Utilities.scrollAndClickIntoView(this.getBtnCancelTicketOfRoute(departStation, arriveStation));
-        Constant.WEBDRIVER.switchTo().alert().accept();
-    }
+//    public void cancelTicket(String departStation, String arriveStation) {
+//        Utilities.scrollAndClickIntoView(this.getBtnCancelTicketOfRoute(departStation, arriveStation));
+//        Constant.WEBDRIVER.switchTo().alert().accept();
+//    }
 
-    public boolean isTicketDisappear(String departStation, String arriveStation){
+    public boolean isTicketDisappear(Ticket ticket){
         boolean isElementDisappear= false;
         try {
-            if (this.getRowTicket(departStation, arriveStation) != null) {
-                WebElement ticket = this.getRowTicket(departStation, arriveStation);
-                isElementDisappear = ticket.isDisplayed();
+            if (this.getRowTicket(ticket) != null) {
+                WebElement RowTicket = this.getRowTicket(ticket);
+                isElementDisappear = RowTicket.isDisplayed();
             }
 
         } catch (NoSuchElementException e) {
             isElementDisappear = true;
         }
         return isElementDisappear;
+    }
+
+    public void cancelTicket(Ticket ticket) {
+        Utilities.scrollAndClickIntoView(this.getBtnCancelTicketOfRoute(ticket));
+        Constant.WEBDRIVER.switchTo().alert().accept();
+    }
+
+    private WebElement getBtnCancelTicketOfRoute(Ticket ticket) {
+        String xpath1 = "//table/tbody/tr/td[text()='";
+        String xpath2 = "']/following::td[text()='";
+        String xpath3 = "']/following::td[8]/input[@value='Cancel']";
+        String resultXpath = xpath1 + ticket.getTicketDepartFrom() + xpath2 + ticket.getTicketArriveAt() + xpath3;
+        By btnCancelTicketOfRoute = By.xpath(resultXpath);
+        return Constant.WEBDRIVER.findElement(btnCancelTicketOfRoute);
     }
 }

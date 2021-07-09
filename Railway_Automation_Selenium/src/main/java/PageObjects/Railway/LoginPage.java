@@ -41,13 +41,12 @@ public class LoginPage extends GeneralPage {
         this.getLinkForgotPasswordPage().click();
     }
 
-    public HomePage login(String username, String password) {
+    public void login(String username, String password) {
         //submit Login credentials
         this.getTxtUsername().sendKeys(username);
         this.getTxtPassword().sendKeys(password);
         this.getBtnLogin().click();
-        //land on Home page
-        return new HomePage();
+
     }
 
     public void multipleLogin(int times) {

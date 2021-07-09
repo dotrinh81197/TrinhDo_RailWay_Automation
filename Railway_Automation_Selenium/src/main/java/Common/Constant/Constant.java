@@ -12,7 +12,7 @@ public class Constant {
     public static final String NEW_PASSWORD = "12345678";
     public static final Integer TIMES_LOGIN = 4;
     public static final Integer DAYS_NUMBER = 5;
-//    public static final String MAIN_EMAIL = "warchelsea097";
+    public static final String MAIN_EMAIL = "example+";
 
 
     public static String MSG_WELCOME_USER = "Welcome %s";

@@ -104,19 +104,6 @@ public class BookTicketPage {
         ticketAmount.selectByVisibleText(value);
     }
 
-    public void fillBookTicketInfo(String departDate, String departFrom, String arriveAt, String seatType, String ticketAmount) {
-        this.getDepartDate(departDate);
-        this.getDepartStation(departFrom);
-        this.getArriveStation(arriveAt);
-        this.getSeatType(seatType);
-        this.getTicketAmount(ticketAmount);
-    }
-
-    public void submitBookTicketInfo(String departDate, String departFrom, String arriveAt, String seatType, String ticketAmount) {
-        this.fillBookTicketInfo(departDate, departFrom, arriveAt, seatType, ticketAmount);
-        Utilities.scrollAndClickIntoView(getBtnBookTicket());
-    }
-
     public String getMessageBookTicketSuccess() {
         return this.getLblBookTicketSuccess().getText();
     }
@@ -154,4 +141,16 @@ public class BookTicketPage {
     }
 
 
+    public void submitBookTicketInfo(Ticket ticket) {
+        this.fillBookTicketInfo(ticket);
+        Utilities.scrollAndClickIntoView(getBtnBookTicket());
+    }
+
+    private void fillBookTicketInfo(Ticket ticket) {
+        this.getDepartDate(ticket.ticketDepartDate);
+        this.getDepartStation(ticket.ticketDepartFrom);
+        this.getArriveStation(ticket.ticketArriveAt);
+        this.getSeatType(ticket.ticketSeatType);
+        this.getTicketAmount(ticket.ticketTicketAmount);
+    }
 }

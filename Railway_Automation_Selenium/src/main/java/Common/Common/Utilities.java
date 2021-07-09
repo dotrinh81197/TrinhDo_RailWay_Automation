@@ -36,8 +36,7 @@ public class Utilities {
             int indexNumber = rnd.nextInt(digits.length() - 1);
             emailRandom.append(digits.charAt(indexNumber));
         }
-        emailRandom.append("@gmail.com");
-        return emailRandom.toString();
+        return Constant.MAIN_EMAIL + emailRandom.append("@gmail.com");
     }
 
     public static void scrollAndClickIntoView(WebElement element) {

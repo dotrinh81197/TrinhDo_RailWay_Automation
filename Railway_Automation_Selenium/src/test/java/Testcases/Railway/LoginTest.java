@@ -53,6 +53,13 @@ public class LoginTest extends TestBase {
         Assert.assertEquals(loginErrorMessage, expectMsg, "LoginErrorMessage display not correct");
     }
 
+    @Test(description = "Login page displays when un-logged User clicks on \"Book ticket\" tab")
+    public void TC04() {
+        homePage.gotoBookTicketPage();
+        boolean isAtLoginPage = Utilities.isAtPage("Login");
+        Assert.assertTrue(isAtLoginPage, "Login Page is not displayed");
+    }
+
     @Test(description = "System shows message when user enters wrong password several times")
     public void TC05() {
         LoginPage loginpage = homePage.gotoLoginPage();
