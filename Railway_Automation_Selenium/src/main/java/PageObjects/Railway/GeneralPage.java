@@ -98,36 +98,36 @@ public class GeneralPage {
     }
 
     public boolean isTabMyTicketDisplay(){
-        boolean isTabExist= false;
+        boolean isTabDisplay;
         try {
-            isTabExist = getTabMyTicket().isDisplayed();
+            isTabDisplay = getTabMyTicket().isDisplayed();
         }
         catch (NoSuchElementException exception){
-            isTabExist= false;
+            isTabDisplay= false;
         }
-        return isTabExist;
+        return isTabDisplay;
     }
 
     public boolean isTabLogOutDisplay(){
-        boolean isTabExist= false;
+        boolean isTabDisplay;
         try {
-            isTabExist = this.getTabLogout().isDisplayed();
+            isTabDisplay = this.getTabLogout().isDisplayed();
         }
         catch (NoSuchElementException exception){
-            isTabExist= false;
+            isTabDisplay= false;
         }
-        return isTabExist;
+        return isTabDisplay;
     }
 
     public boolean isTabChangePasswordDisplay(){
-        boolean isTabExist= false;
+        boolean isTabDisplay;
         try {
-            isTabExist =  this.getTabChangePassword().isDisplayed();
+            isTabDisplay =  this.getTabChangePassword().isDisplayed();
         }
         catch (NoSuchElementException exception){
-            isTabExist= false;
+            isTabDisplay= false;
         }
-        return isTabExist;
+        return isTabDisplay;
     }
 
 }

@@ -1,6 +1,5 @@
 package Common.Constant;
 
-import Common.Common.Utilities;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Constant {
