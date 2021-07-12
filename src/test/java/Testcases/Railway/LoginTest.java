@@ -76,6 +76,7 @@ public class LoginTest extends TestBase {
         loginPage.login(Constant.USERNAME, Constant.VALID_PASSWORD);
         Assert.assertTrue(loginPage.isTabMyTicketDisplay(), "Tab My Ticket not display");
         Assert.assertTrue(loginPage.isTabLogOutDisplay(), "Tab Logout not display");
+        Assert.assertTrue(loginPage.isTabChangePasswordDisplay(), "Tab ChangePassword not display");
         homePage.gotoMyTicketPage();
         Assert.assertTrue(Utilities.isAtPage("My Ticket"), "Not directed to My ticket page");
         homePage.gotoChangePasswordPage();

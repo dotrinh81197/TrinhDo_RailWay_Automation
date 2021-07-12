@@ -11,7 +11,7 @@ public class MyTicketPage {
     //locators
 
     protected WebElement getRowTicket(Ticket ticket){
-        String xpath1 = "//table/tbody/tr/td[text()='";
+        String xpath1 = "//table[@class='MyTable']/tbody/tr/td[text()='";
         String xpath2 = "']/following::td[text()='";
         String xpath3 = "']/..";
         String resultXpath = xpath1 + ticket.getTicketDepartFrom() + xpath2 + ticket.getTicketArriveAt() + xpath3;
@@ -40,7 +40,7 @@ public class MyTicketPage {
     }
 
     private WebElement getBtnCancelTicketOfRoute(Ticket ticket) {
-        String xpath1 = "//table/tbody/tr[2]/td[text()='";
+        String xpath1 = "//table[@class='MyTable']/tbody/tr[2]/td[text()='";
         String xpath2 = "']/following::td[text()='";
         String xpath3 = "']/following::td[8]/input[@value='Cancel']";
         String resultXpath = xpath1 + ticket.getTicketDepartFrom() + xpath2 + ticket.getTicketArriveAt() + xpath3;

@@ -14,7 +14,7 @@ public class Utilities {
     protected static final String alpha = "abcdefghijklmnopqrstvwxyzabcedfABCDEFGHJKLMNOPQRSTVWXYZ";
     protected static final String digits = "0123456789";
 
-    public static String getProjectPath() {
+    public static String getWebDriverPath() {
         return "src/main/resources/WebDriver/chromedriver.exe";
     }
 

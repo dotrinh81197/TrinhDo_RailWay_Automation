@@ -24,7 +24,6 @@ public class BookTicketPage {
 
     //elements
     protected WebElement getComboBoxDepartDate() {
-
         return Constant.WEBDRIVER.findElement(_comboBoxDepartDate);
     }
 
