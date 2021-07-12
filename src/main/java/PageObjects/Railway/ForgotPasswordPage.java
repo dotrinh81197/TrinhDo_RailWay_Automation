@@ -12,7 +12,7 @@ public class ForgotPasswordPage extends GeneralPage {
     private final By _btnSubmitEmail = By.xpath("//input[@type='submit']");
 
     //elements
-    protected WebElement getTxtEmailAddress(){
+    protected WebElement getEmailAddressElement(){
         return Constant.WEBDRIVER.findElement(_txtEmailAddress);
     }
 
@@ -23,7 +23,7 @@ public class ForgotPasswordPage extends GeneralPage {
     //methods
 
     public void submitEmail(String registerEmail){
-        this.getTxtEmailAddress().sendKeys(registerEmail);
+        this.getEmailAddressElement().sendKeys(registerEmail);
         Utilities.scrollAndClickIntoView(getBtnSubmitEmail());
     }
 }

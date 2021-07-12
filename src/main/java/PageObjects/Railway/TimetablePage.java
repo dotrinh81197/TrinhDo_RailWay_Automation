@@ -20,7 +20,6 @@ public class TimetablePage extends GeneralPage {
 
     //methods
 
-
     public void gotoBookTicketOfRoute(String departFrom, String arriveAt) {
        Utilities.scrollAndClickIntoView(this.getLinkBookTicketOfRoute(departFrom, arriveAt));
     }

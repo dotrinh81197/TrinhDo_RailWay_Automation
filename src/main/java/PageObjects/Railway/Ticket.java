@@ -15,10 +15,6 @@ public class Ticket {
         this.ticketTicketAmount = ticketTicketAmount;
     }
 
-    public Ticket(){
-
-    }
-
     public String getTicketDepartDate() {
         return ticketDepartDate;
     }

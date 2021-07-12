@@ -13,15 +13,15 @@ public class ChangePasswordPage {
     private final By _lblMessageSuccess = By.xpath("//p[@class='message success']");
     //elements
 
-    protected WebElement getTxtCurrentPassword(){
+    protected WebElement getCurrentPasswordElement(){
         return Constant.WEBDRIVER.findElement(_txtCurrentPassword);
     }
 
-    protected WebElement getTxtNewPassword(){
+    protected WebElement getNewPasswordElement(){
         return Constant.WEBDRIVER.findElement(_textNewPassword);
     }
 
-    protected WebElement getTxtConfirmPassword(){
+    protected WebElement getConfirmPasswordElement(){
         return Constant.WEBDRIVER.findElement(_textConfirmPassword);
     }
 
@@ -29,15 +29,15 @@ public class ChangePasswordPage {
         return Constant.WEBDRIVER.findElement(_btnChangePassword);
     }
 
-    protected WebElement getLblMessageSuccess(){
+    protected WebElement getMessageSuccessElement(){
         return Constant.WEBDRIVER.findElement(_lblMessageSuccess);
     }
 
     //methods
     public void fillChangePasswordInfo(String currentPassword, String newPassword, String confirmPassword){
-        this.getTxtCurrentPassword().sendKeys(currentPassword);
-        this.getTxtNewPassword().sendKeys(newPassword);
-        this.getTxtConfirmPassword().sendKeys(confirmPassword);
+        this.getCurrentPasswordElement().sendKeys(currentPassword);
+        this.getNewPasswordElement().sendKeys(newPassword);
+        this.getConfirmPasswordElement().sendKeys(confirmPassword);
     }
 
     public void submitChangePassword(String currentPassword, String newPassword, String confirmPassword){
@@ -50,7 +50,7 @@ public class ChangePasswordPage {
     }
 
     public String getChangePasswordSuccessMsg(){
-        return this.getLblMessageSuccess().getText();
+        return this.getMessageSuccessElement().getText();
     }
 
 

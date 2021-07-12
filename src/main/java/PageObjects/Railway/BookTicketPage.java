@@ -8,11 +8,11 @@ import org.openqa.selenium.support.ui.Select;
 
 public class BookTicketPage {
     //locators
-    private final By _comboBoxDepartDate = By.xpath("//select[@name='Date']");
-    private final By _comboBoxDepartStation = By.xpath("//select[@name='DepartStation']");
-    private final By _comboBoxArriveStation = By.xpath("//select[@name='ArriveStation']");
-    private final By _comboBoxSeatType = By.xpath("//select[@name='SeatType']");
-    private final By _comboBoxTicketAmount = By.xpath("//select[@name='TicketAmount']");
+    private final By _comboBoxDepartDate = By.name("Date");
+    private final By _comboBoxDepartStation = By.name("DepartStation");
+    private final By _comboBoxArriveStation = By.name("ArriveStation");
+    private final By _comboBoxSeatType =  By.name("SeatType");
+    private final By _comboBoxTicketAmount = By.name("TicketAmount");
     private final By _btnBookTicket = By.xpath("//input[@type='submit']");
     private final By _lblBookTicketSuccessMsg = By.xpath("//div[@id='content']/h1");
     private final By _cellDepartStation = By.xpath("//table[@class ='MyTable WideTable']/tbody/tr[1]/following-sibling::tr/td[1]");
@@ -28,19 +28,19 @@ public class BookTicketPage {
         return Constant.WEBDRIVER.findElement(_comboBoxDepartDate);
     }
 
-    protected WebElement getComboBoxDepartStation() {
+    protected WebElement getDepartStationElement() {
         return Constant.WEBDRIVER.findElement(_comboBoxDepartStation);
     }
 
-    protected WebElement getComboBoxArriveStation() {
+    protected WebElement getArriveStationElement() {
         return Constant.WEBDRIVER.findElement(_comboBoxArriveStation);
     }
 
-    protected WebElement getComboBoxSeatType() {
+    protected WebElement getSeatTypeElement() {
         return Constant.WEBDRIVER.findElement(_comboBoxSeatType);
     }
 
-    protected WebElement getComboBoxTicketAmount() {
+    protected WebElement getTicketAmountElement() {
         return Constant.WEBDRIVER.findElement(_comboBoxTicketAmount);
     }
 
@@ -81,25 +81,25 @@ public class BookTicketPage {
     }
 
     public void getDepartStation(String value) {
-        Utilities.scrollAndClickIntoView(this.getComboBoxDepartStation());
+        Utilities.scrollAndClickIntoView(this.getDepartStationElement());
         Select departStation = new Select(Constant.WEBDRIVER.findElement(_comboBoxDepartStation));
         departStation.selectByVisibleText(value);
     }
 
     public void getArriveStation(String value) {
-        Utilities.scrollAndClickIntoView(this.getComboBoxArriveStation());
+        Utilities.scrollAndClickIntoView(this.getArriveStationElement());
         Select arriveStation = new Select(Constant.WEBDRIVER.findElement(_comboBoxArriveStation));
         arriveStation.selectByVisibleText(value);
     }
 
     public void getSeatType(String value) {
-        Utilities.scrollAndClickIntoView(this.getComboBoxSeatType());
+        Utilities.scrollAndClickIntoView(this.getSeatTypeElement());
         Select seatType = new Select(Constant.WEBDRIVER.findElement(_comboBoxSeatType));
         seatType.selectByVisibleText(value);
     }
 
     public void getTicketAmount(String value) {
-        Utilities.scrollAndClickIntoView(this.getComboBoxTicketAmount());
+        Utilities.scrollAndClickIntoView(this.getTicketAmountElement());
         Select ticketAmount = new Select(Constant.WEBDRIVER.findElement(_comboBoxTicketAmount));
         ticketAmount.selectByVisibleText(value);
     }
@@ -129,17 +129,16 @@ public class BookTicketPage {
     }
 
     public String getSelectedOptionDepartFrom() {
-        Utilities.scrollAndClickIntoView(this.getComboBoxDepartStation());
+        Utilities.scrollAndClickIntoView(this.getDepartStationElement());
         Select departDate = new Select(Constant.WEBDRIVER.findElement(_comboBoxDepartStation));
         return departDate.getFirstSelectedOption().getText();
     }
 
     public String getSelectedOptionArriveAt() {
-        Utilities.scrollAndClickIntoView(this.getComboBoxArriveStation());
+        Utilities.scrollAndClickIntoView(this.getArriveStationElement());
         Select departDate = new Select(Constant.WEBDRIVER.findElement(_comboBoxArriveStation));
         return departDate.getFirstSelectedOption().getText();
     }
-
 
     public void submitBookTicketInfo(Ticket ticket) {
         this.fillBookTicketInfo(ticket);

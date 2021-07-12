@@ -9,18 +9,18 @@ import java.util.NoSuchElementException;
 public class LoginPage extends GeneralPage {
 
     //locators
-    private final By _txtUsername = By.xpath("//input[@id='username']");
-    private final By _textPassword = By.xpath("//input[@id='password']");
+    private final By _txtUsername = By.id("username");
+    private final By _textPassword = By.id("password");
     private final By _btnLogin = By.xpath("//input[@type='submit']");
     private final By _lblLoginErrorMsg = By.xpath("//p[@class='message error LoginForm']");
     private final By _linkForgotPasswordPage = By.xpath("//a[contains(@href, 'ForgotPassword')]");
 
     //elements
-    public WebElement getTxtUsername() {
+    public WebElement getUsernameElement() {
         return Constant.WEBDRIVER.findElement(_txtUsername);
     }
 
-    public WebElement getTxtPassword() {
+    public WebElement getPasswordElement() {
         return Constant.WEBDRIVER.findElement(_textPassword);
     }
 
@@ -32,21 +32,20 @@ public class LoginPage extends GeneralPage {
             return  Constant.WEBDRIVER.findElement(_lblLoginErrorMsg);
     }
 
-    public WebElement getLinkForgotPasswordPage(){
+    public WebElement getForgotPasswordPageElement(){
         return Constant.WEBDRIVER.findElement(_linkForgotPasswordPage);
     }
 
     //methods
     public void gotoForgotPasswordPage(){
-        this.getLinkForgotPasswordPage().click();
+        this.getForgotPasswordPageElement().click();
     }
 
     public void login(String username, String password) {
         //submit Login credentials
-        this.getTxtUsername().sendKeys(username);
-        this.getTxtPassword().sendKeys(password);
+        this.getUsernameElement().sendKeys(username);
+        this.getPasswordElement().sendKeys(password);
         this.getBtnLogin().click();
-
     }
 
     public void multipleLogin(int times) {

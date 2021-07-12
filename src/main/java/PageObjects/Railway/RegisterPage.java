@@ -18,23 +18,21 @@ public class RegisterPage extends GeneralPage {
     protected final By _lblPasswordError = By.xpath("//li[@class='password']/label[@class='validation-error']");
     protected final By _lblPidError = By.xpath("//li[@class='pid-number']/label[@class='validation-error']");
 
-
-
     //elements
 
-    public WebElement getTxtEmail() {
+    public WebElement getEmailElement() {
         return Constant.WEBDRIVER.findElement(_txtEmail);
     }
 
-    public WebElement getTxtPassword() {
+    public WebElement getPasswordElement() {
         return Constant.WEBDRIVER.findElement(_txtPassword);
     }
 
-    public WebElement getTxtConfirmPassword() {
+    public WebElement getConfirmPasswordElement() {
         return Constant.WEBDRIVER.findElement(_txtConfirmPassword);
     }
 
-    public WebElement getTxtPID() {
+    public WebElement getPIDElement() {
         return Constant.WEBDRIVER.findElement(_txtPID);
     }
 
@@ -61,18 +59,16 @@ public class RegisterPage extends GeneralPage {
     //methods
 
     public void fillRegisterInfo(String registerEmail, String registerPassword, String confirmPassword, String pid) {
-//        String registerEmail = Utilities.generateRandomEmail();
-        this.getTxtEmail().sendKeys(registerEmail);
-        this.getTxtPassword().sendKeys(registerPassword);
-        this.getTxtConfirmPassword().sendKeys(confirmPassword);
-        this.getTxtPID().sendKeys(pid);
+        this.getEmailElement().sendKeys(registerEmail);
+        this.getPasswordElement().sendKeys(registerPassword);
+        this.getConfirmPasswordElement().sendKeys(confirmPassword);
+        this.getPIDElement().sendKeys(pid);
 
     }
 
     public void registerAccount(String email, String password, String confirmPassword, String pid) {
         this.fillRegisterInfo(email, password, confirmPassword, pid);
         Utilities.scrollAndClickIntoView(this.getBtnRegister());
-
     }
 
     public String getRegisterSuccessMsg(){

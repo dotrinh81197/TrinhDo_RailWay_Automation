@@ -58,10 +58,9 @@ public class GeneralPage {
         return getLblWelcomeMessage().isDisplayed();
     }
 
-    public LoginPage gotoLoginPage() {
+    public void gotoLoginPage() {
         this.getTabLogin().click();
-        return new LoginPage();
-    }
+           }
 
     public void gotoBookTicketPage() {
         this.getTabBookTicket().click();
@@ -77,9 +76,9 @@ public class GeneralPage {
 
     }
 
-    public RegisterPage gotoRegisterPage(){
+    public void gotoRegisterPage(){
         this.getTabRegister().click();
-        return new RegisterPage();
+
     }
 
     public ChangePasswordPage gotoChangePasswordPage(){

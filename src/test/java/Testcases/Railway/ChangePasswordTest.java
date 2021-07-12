@@ -11,12 +11,13 @@ public class ChangePasswordTest extends TestBase {
     protected String currentPassword = Constant.VALID_PASSWORD;
     protected String newPassword = Constant.NEW_PASSWORD;
     protected String confirmPassword = newPassword;
+    LoginPage loginPage = new LoginPage();
 
     @Test(description = "User can change password")
     public void TC09() {
         homePage.open();
-        LoginPage loginpage = homePage.gotoLoginPage();
-        loginpage.login(Constant.USERNAME, Constant.VALID_PASSWORD);
+        homePage.gotoLoginPage();
+        loginPage.login(Constant.USERNAME, Constant.VALID_PASSWORD);
         homePage.isTabChangePasswordDisplay();
         ChangePasswordPage changePasswordPage = homePage.gotoChangePasswordPage();
         changePasswordPage.changePassword(currentPassword, newPassword, confirmPassword);
