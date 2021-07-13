@@ -1,15 +1,15 @@
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
-<!--<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">-->
-<!--<suite name="Test Suite" >-->
-<!--    <test name="TestCase RailWay">-->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test Suite" >
+    <test name="TestCase RailWay">
 
-<!--        <classes>-->
-<!--            <class name="Testcases.Railway.RegisterTest"/>-->
-<!--            <class name="Testcases.Railway.LoginTest"/>-->
-<!--            <class name="Testcases.Railway.ChangePasswordTest"/>-->
-<!--            <class name="Testcases.Railway.BookTicketTest"/>-->
-<!--            <class name="Testcases.Railway.ForgotPasswordTest"/>-->
-<!--        </classes>-->
-<!--    </test> &lt;!&ndash; Test &ndash;&gt;-->
+        <classes>
+            <class name="Testcases.Railway.RegisterTest"/>
+            <class name="Testcases.Railway.LoginTest"/>
+            <class name="Testcases.Railway.ChangePasswordTest"/>
+            <class name="Testcases.Railway.BookTicketTest"/>
+            <class name="Testcases.Railway.ForgotPasswordTest"/>
+        </classes>
+    </test> <!-- Test -->
 
-<!--</suite> &lt;!&ndash; Suite &ndash;&gt;-->
+</suite> <!-- Suite -->
