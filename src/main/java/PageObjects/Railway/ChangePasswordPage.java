@@ -1,5 +1,6 @@
 package PageObjects.Railway;
 
+import Common.Common.Utilities;
 import Common.Constant.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -14,23 +15,23 @@ public class ChangePasswordPage {
     //elements
 
     protected WebElement getCurrentPasswordElement(){
-        return Constant.WEBDRIVER.findElement(_txtCurrentPassword);
+        return Utilities.findElement(_txtCurrentPassword);
     }
 
     protected WebElement getNewPasswordElement(){
-        return Constant.WEBDRIVER.findElement(_textNewPassword);
+        return Utilities.findElement(_textNewPassword);
     }
 
     protected WebElement getConfirmPasswordElement(){
-        return Constant.WEBDRIVER.findElement(_textConfirmPassword);
+        return Utilities.findElement(_textConfirmPassword);
     }
 
     protected WebElement getBtnChangePassword(){
-        return Constant.WEBDRIVER.findElement(_btnChangePassword);
+        return Utilities.findElement(_btnChangePassword);
     }
 
     protected WebElement getMessageSuccessElement(){
-        return Constant.WEBDRIVER.findElement(_lblMessageSuccess);
+        return Utilities.findElement(_lblMessageSuccess);
     }
 
     //methods

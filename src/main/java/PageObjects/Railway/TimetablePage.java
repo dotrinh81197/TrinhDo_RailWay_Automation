@@ -15,7 +15,7 @@ public class TimetablePage extends GeneralPage {
         String xpath3 = "')]/../td[contains(.,'book ticket')]/a";
         String resultXpath = xpath1 + departFrom + xpath2 + ArriveAt + xpath3;
         By linkBookTicketOfRoute = By.xpath(resultXpath);
-        return Constant.WEBDRIVER.findElement(linkBookTicketOfRoute);
+        return Utilities.findElement(linkBookTicketOfRoute);
     }
 
     //methods

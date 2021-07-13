@@ -16,7 +16,6 @@ public class TestBase {
     public void beforeClass() {
         System.setProperty("webdriver.chrome.driver", Utilities.getWebDriverPath());
         Constant.WEBDRIVER = new ChromeDriver();
-//        Constant.WEBDRIVER.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         Constant.WEBDRIVER.manage().window().maximize();
     }
 

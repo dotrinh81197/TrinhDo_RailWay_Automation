@@ -13,11 +13,11 @@ public class ForgotPasswordPage extends GeneralPage {
 
     //elements
     protected WebElement getEmailAddressElement(){
-        return Constant.WEBDRIVER.findElement(_txtEmailAddress);
+        return Utilities.findElement(_txtEmailAddress);
     }
 
     protected WebElement getBtnSubmitEmail(){
-        return Constant.WEBDRIVER.findElement(_btnSubmitEmail);
+        return Utilities.findElement(_btnSubmitEmail);
     }
 
     //methods
