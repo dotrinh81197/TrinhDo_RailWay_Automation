@@ -24,51 +24,51 @@ public class BookTicketPage {
 
     //elements
     protected WebElement getComboBoxDepartDate() {
-        return Constant.WEBDRIVER.findElement(_comboBoxDepartDate);
+        return Utilities.findElement(_comboBoxDepartDate);
     }
 
     protected WebElement getDepartStationElement() {
-        return Constant.WEBDRIVER.findElement(_comboBoxDepartStation);
+        return Utilities.findElement(_comboBoxDepartStation);
     }
 
     protected WebElement getArriveStationElement() {
-        return Constant.WEBDRIVER.findElement(_comboBoxArriveStation);
+        return Utilities.findElement(_comboBoxArriveStation);
     }
 
     protected WebElement getSeatTypeElement() {
-        return Constant.WEBDRIVER.findElement(_comboBoxSeatType);
+        return Utilities.findElement(_comboBoxSeatType);
     }
 
     protected WebElement getTicketAmountElement() {
-        return Constant.WEBDRIVER.findElement(_comboBoxTicketAmount);
+        return Utilities.findElement(_comboBoxTicketAmount);
     }
 
     protected WebElement getBtnBookTicket() {
-        return Constant.WEBDRIVER.findElement(_btnBookTicket);
+        return Utilities.findElement(_btnBookTicket);
     }
 
     protected WebElement getLblBookTicketSuccess() {
-        return Constant.WEBDRIVER.findElement(_lblBookTicketSuccessMsg);
+        return Utilities.findElement(_lblBookTicketSuccessMsg);
     }
 
     protected WebElement getCellDepartStation() {
-        return Constant.WEBDRIVER.findElement(_cellDepartStation);
+        return Utilities.findElement(_cellDepartStation);
     }
 
     protected WebElement getCellDepartDate() {
-        return Constant.WEBDRIVER.findElement(_cellDepartDate);
+        return Utilities.findElement(_cellDepartDate);
     }
 
     protected WebElement getCellArriveStation() {
-        return Constant.WEBDRIVER.findElement(_cellArriveStation);
+        return Utilities.findElement(_cellArriveStation);
     }
 
     protected WebElement getCellSeatType() {
-        return Constant.WEBDRIVER.findElement(_cellSeatType);
+        return Utilities.findElement(_cellSeatType);
     }
 
     protected WebElement getCellAmount() {
-        return Constant.WEBDRIVER.findElement(_cellAmount);
+        return Utilities.findElement(_cellAmount);
     }
 
     //methods
@@ -81,25 +81,25 @@ public class BookTicketPage {
 
     public void getDepartStation(String value) {
         Utilities.scrollAndClickIntoView(this.getDepartStationElement());
-        Select departStation = new Select(Constant.WEBDRIVER.findElement(_comboBoxDepartStation));
+        Select departStation = new Select(Utilities.findElement(_comboBoxDepartStation));
         departStation.selectByVisibleText(value);
     }
 
     public void getArriveStation(String value) {
         Utilities.scrollAndClickIntoView(this.getArriveStationElement());
-        Select arriveStation = new Select(Constant.WEBDRIVER.findElement(_comboBoxArriveStation));
+        Select arriveStation = new Select(Utilities.findElement(_comboBoxArriveStation));
         arriveStation.selectByVisibleText(value);
     }
 
     public void getSeatType(String value) {
         Utilities.scrollAndClickIntoView(this.getSeatTypeElement());
-        Select seatType = new Select(Constant.WEBDRIVER.findElement(_comboBoxSeatType));
+        Select seatType = new Select(Utilities.findElement(_comboBoxSeatType));
         seatType.selectByVisibleText(value);
     }
 
     public void getTicketAmount(String value) {
         Utilities.scrollAndClickIntoView(this.getTicketAmountElement());
-        Select ticketAmount = new Select(Constant.WEBDRIVER.findElement(_comboBoxTicketAmount));
+        Select ticketAmount = new Select(Utilities.findElement(_comboBoxTicketAmount));
         ticketAmount.selectByVisibleText(value);
     }
 
@@ -129,13 +129,13 @@ public class BookTicketPage {
 
     public String getSelectedOptionDepartFrom() {
         Utilities.scrollAndClickIntoView(this.getDepartStationElement());
-        Select departDate = new Select(Constant.WEBDRIVER.findElement(_comboBoxDepartStation));
+        Select departDate = new Select(Utilities.findElement(_comboBoxDepartStation));
         return departDate.getFirstSelectedOption().getText();
     }
 
     public String getSelectedOptionArriveAt() {
         Utilities.scrollAndClickIntoView(this.getArriveStationElement());
-        Select departDate = new Select(Constant.WEBDRIVER.findElement(_comboBoxArriveStation));
+        Select departDate = new Select(Utilities.findElement(_comboBoxArriveStation));
         return departDate.getFirstSelectedOption().getText();
     }
 

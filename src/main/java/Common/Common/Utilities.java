@@ -1,8 +1,7 @@
 package Common.Common;
 
 import Common.Constant.Constant;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -55,5 +54,27 @@ public class Utilities {
         SimpleDateFormat formatter = new SimpleDateFormat("M/dd/yyyy");
         return formatter.format(date);
     }
+
+    public static WebElement findElement(By Locator){
+        WebElement element = null;
+        try {
+            element = Constant.WEBDRIVER.findElement(Locator);
+
+        }catch (NoSuchElementException | StaleElementReferenceException e){
+            System.out.println(e.getMessage());
+        }
+        return element;
+    }
+
+    public static boolean isElementExist(By Locator){
+        try{
+            Constant.WEBDRIVER.findElement(Locator);
+            return true;
+        }
+        catch (NoSuchElementException e){
+            return false;
+        }
+    }
+
 
 }

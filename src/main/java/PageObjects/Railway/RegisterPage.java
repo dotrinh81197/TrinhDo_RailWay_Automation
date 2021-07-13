@@ -21,39 +21,39 @@ public class RegisterPage extends GeneralPage {
     //elements
 
     public WebElement getEmailElement() {
-        return Constant.WEBDRIVER.findElement(_txtEmail);
+        return Utilities.findElement(_txtEmail);
     }
 
     public WebElement getPasswordElement() {
-        return Constant.WEBDRIVER.findElement(_txtPassword);
+        return Utilities.findElement(_txtPassword);
     }
 
     public WebElement getConfirmPasswordElement() {
-        return Constant.WEBDRIVER.findElement(_txtConfirmPassword);
+        return Utilities.findElement(_txtConfirmPassword);
     }
 
     public WebElement getPIDElement() {
-        return Constant.WEBDRIVER.findElement(_txtPID);
+        return Utilities.findElement(_txtPID);
     }
 
     public WebElement getMsgRegisterSuccess() {
-        return Constant.WEBDRIVER.findElement(_msgRegisterSuccess);
+        return Utilities.findElement(_msgRegisterSuccess);
     }
 
     public WebElement getMsgRegisterError() {
-        return Constant.WEBDRIVER.findElement(_msgRegisterError);
+        return Utilities.findElement(_msgRegisterError);
     }
 
     public WebElement getLblPasswordError() {
-        return Constant.WEBDRIVER.findElement(_lblPasswordError);
+        return Utilities.findElement(_lblPasswordError);
     }
 
     public WebElement getLblPidError() {
-        return Constant.WEBDRIVER.findElement(_lblPidError);
+        return Utilities.findElement(_lblPidError);
     }
 
     public WebElement getBtnRegister() {
-        return Constant.WEBDRIVER.findElement(_btnRegister);
+        return Utilities.findElement(_btnRegister);
     }
 
     //methods

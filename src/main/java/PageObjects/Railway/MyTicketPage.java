@@ -16,7 +16,7 @@ public class MyTicketPage {
         String xpath3 = "']/..";
         String resultXpath = xpath1 + ticket.getTicketDepartFrom() + xpath2 + ticket.getTicketArriveAt() + xpath3;
         By rowTicketOfRout = By.xpath(resultXpath);
-        return Constant.WEBDRIVER.findElement(rowTicketOfRout);
+        return Utilities.findElement(rowTicketOfRout);
 
     }
 
@@ -45,6 +45,6 @@ public class MyTicketPage {
         String xpath3 = "']/following::td[8]/input[@value='Cancel']";
         String resultXpath = xpath1 + ticket.getTicketDepartFrom() + xpath2 + ticket.getTicketArriveAt() + xpath3;
         By btnCancelTicketOfRoute = By.xpath(resultXpath);
-        return Constant.WEBDRIVER.findElement(btnCancelTicketOfRoute);
+        return Utilities.findElement(btnCancelTicketOfRoute);
     }
 }
