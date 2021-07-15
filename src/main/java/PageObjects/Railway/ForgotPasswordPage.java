@@ -1,14 +1,12 @@
 package PageObjects.Railway;
 
 import Common.Common.Utilities;
-import Common.Constant.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class ForgotPasswordPage extends GeneralPage {
     //locators
     private final By _txtEmailAddress = By.id("email");
-
     private final By _btnSubmitEmail = By.xpath("//input[@type='submit']");
 
     //elements
