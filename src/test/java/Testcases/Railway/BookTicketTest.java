@@ -82,8 +82,8 @@ public class BookTicketTest extends TestBase {
 
         homePage.gotoMyTicketPage();
         MyTicketPage myTicketPage = new MyTicketPage();
-        myTicketPage.cancelTicket(ticket);
-        Assert.assertTrue(myTicketPage.isTicketDisappear(ticket), "Ticket still display");
+        myTicketPage.cancelTicket(Constant.ROW_TICKET);
+        Assert.assertTrue(myTicketPage.isTicketDisappear(), "Ticket still display");
     }
 
 }

@@ -11,6 +11,7 @@ public class Constant {
     public static final String NEW_PASSWORD = "12345678";
     public static final Integer TIMES_LOGIN = 4;
     public static final Integer DAYS_NUMBER = 5;
+    public static final Integer ROW_TICKET = 2;
     public static final String MAIN_EMAIL = "example+";
 
 

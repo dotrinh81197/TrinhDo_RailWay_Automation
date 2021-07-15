@@ -1,7 +1,6 @@
 package PageObjects.Railway;
 
 import Common.Common.Utilities;
-import Common.Constant.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -14,13 +13,12 @@ public class BookTicketPage {
     private final By _comboBoxSeatType =  By.name("SeatType");
     private final By _comboBoxTicketAmount = By.name("TicketAmount");
     private final By _btnBookTicket = By.xpath("//input[@type='submit']");
-    private final By _lblBookTicketSuccessMsg = By.xpath("//div[@id='content']/h1");
-    private final By _cellDepartStation = By.xpath("//table[@class ='MyTable WideTable']/tbody/tr[1]/following-sibling::tr/td[1]");
-    private final By _cellDepartDate = By.xpath("//table[@class ='MyTable WideTable']/tbody/tr[1]/following-sibling::tr/td[4]");
-    private final By _cellArriveStation = By.xpath("//table[@class ='MyTable WideTable']/tbody/tr[1]/following-sibling::tr/td[2]");
-    private final By _cellSeatType = By.xpath("//table[@class ='MyTable WideTable']/tbody/tr[1]/following-sibling::tr/td[3]");
-    private final By _cellAmount = By.xpath("//table[@class ='MyTable WideTable']/tbody/tr[1]/following-sibling::tr/td[7]");
-
+    private final By _lblBookTicketSuccessMsg = By.xpath("//div[@id='content']//h1");
+    private final By _cellDepartStation = By.xpath("//td[1]");
+    private final By _cellDepartDate = By.xpath("//td[4]");
+    private final By _cellArriveStation = By.xpath("//td[2]");
+    private final By _cellSeatType = By.xpath("//td[3]");
+    private final By _cellAmount = By.xpath("//td[7]");
 
     //elements
     protected WebElement getComboBoxDepartDate() {

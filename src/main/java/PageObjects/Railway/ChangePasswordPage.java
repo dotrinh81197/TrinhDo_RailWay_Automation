@@ -1,7 +1,6 @@
 package PageObjects.Railway;
 
 import Common.Common.Utilities;
-import Common.Constant.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -12,8 +11,8 @@ public class ChangePasswordPage {
     private final By _textConfirmPassword = By.id("confirmPassword");
     private final By _btnChangePassword = By.xpath("//input[@type='submit']");
     private final By _lblMessageSuccess = By.xpath("//p[@class='message success']");
-    //elements
 
+    //elements
     protected WebElement getCurrentPasswordElement(){
         return Utilities.findElement(_txtCurrentPassword);
     }
@@ -53,6 +52,4 @@ public class ChangePasswordPage {
     public String getChangePasswordSuccessMsg(){
         return this.getMessageSuccessElement().getText();
     }
-
-
 }

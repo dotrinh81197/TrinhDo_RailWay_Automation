@@ -14,7 +14,7 @@ public class GeneralPage {
     private final By tabRegister = By.xpath("//a[.='Register']");
     private final By tabTimetable = By.xpath("//a[.='Timetable']");
     private final By tabChangePassword = By.xpath("//a[.='Change password']");
-    private final By lblWelcomeMessage = By.xpath("//div[@class='account']/strong[normalize-space()]");
+    private final By lblWelcomeMessage = By.xpath("//div[@class='account']//strong[normalize-space()]");
 
     //elements
     protected WebElement getTabLogin() {
@@ -98,10 +98,9 @@ public class GeneralPage {
     }
 
     public boolean isTabMyTicketDisplay() {
-        boolean isTabDisplay = false;
+        boolean isTabDisplay;
         try {
-           if(Utilities.isElementExist(tabMyTicket)){
-               isTabDisplay = getTabMyTicket().isDisplayed();}
+            isTabDisplay = this.getTabMyTicket().isDisplayed();
         } catch (NoSuchElementException exception) {
             isTabDisplay = false;
         }
@@ -127,6 +126,5 @@ public class GeneralPage {
         }
         return isTabDisplay;
     }
-
 }
 

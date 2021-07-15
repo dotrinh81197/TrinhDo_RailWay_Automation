@@ -1,11 +1,11 @@
 package PageObjects.Railway;
 
 public class Ticket {
-    String ticketDepartDate ="" ;
-    String ticketDepartFrom = "";
-    String ticketArriveAt = "";
-    String ticketSeatType ="";
-    String ticketTicketAmount = "";
+    String ticketDepartDate;
+    String ticketDepartFrom ;
+    String ticketArriveAt;
+    String ticketSeatType ;
+    String ticketTicketAmount;
 
     public Ticket(String ticketDepartDate, String ticketDepartFrom, String ticketArriveAt, String ticketSeatType, String ticketTicketAmount) {
         this.ticketDepartDate = ticketDepartDate;

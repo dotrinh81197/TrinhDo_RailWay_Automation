@@ -5,46 +5,38 @@ import Common.Constant.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.NoSuchElementException;
-
 public class MyTicketPage {
     //locators
+    private final By _rowsTicket = By.xpath("//tr[@class='OddRow' or @class='EvenRow']");
 
-    protected WebElement getRowTicket(Ticket ticket){
-        String xpath1 = "//table[@class='MyTable']/tbody/tr/td[text()='";
-        String xpath2 = "']/following::td[text()='";
-        String xpath3 = "']/..";
-        String resultXpath = xpath1 + ticket.getTicketDepartFrom() + xpath2 + ticket.getTicketArriveAt() + xpath3;
-        By rowTicketOfRout = By.xpath(resultXpath);
-        return Utilities.findElement(rowTicketOfRout);
+    //cell_filter_DpStation : //td//select[@name='FilterDpStation']
+    // btn_apply_filter: //input[@value = 'Apply Filter']
 
+    //elements
+
+    private WebElement getBtnCancelTicket(int row) {
+        String xpath1 = "//table[@class='MyTable']//tr[";
+        String xpath2 = "]//td[11]/input[@value ='Cancel']";
+        String resultXpath = xpath1 + row + xpath2;
+        By btnCancelTicket = By.xpath(resultXpath);
+        return Utilities.findElement(btnCancelTicket);
     }
 
-    public boolean isTicketDisappear(Ticket ticket){
-        boolean isElementDisappear= false;
-        try {
-            if (this.getRowTicket(ticket) != null) {
-                WebElement RowTicket = this.getRowTicket(ticket);
-                isElementDisappear = RowTicket.isDisplayed();
-            }
+    //methods
+    private final Integer rows = Constant.WEBDRIVER.findElements(_rowsTicket).size();
 
-        } catch (NoSuchElementException e) {
-            isElementDisappear = true;
-        }
+    protected int getRowsTicket() {
+        return Constant.WEBDRIVER.findElements(_rowsTicket).size();
+    }
+
+    public boolean isTicketDisappear() {
+        boolean isElementDisappear;
+        isElementDisappear = this.getRowsTicket() == rows - 1;
         return isElementDisappear;
     }
 
-    public void cancelTicket(Ticket ticket) {
-        Utilities.scrollAndClickIntoView(this.getBtnCancelTicketOfRoute(ticket));
+    public void cancelTicket(int row) {
+        Utilities.scrollAndClickIntoView(this.getBtnCancelTicket(row));
         Constant.WEBDRIVER.switchTo().alert().accept();
-    }
-
-    private WebElement getBtnCancelTicketOfRoute(Ticket ticket) {
-        String xpath1 = "//table[@class='MyTable']/tbody/tr/td[text()='";
-        String xpath2 = "']/following::td[text()='";
-        String xpath3 = "']/following::td/input[@value='Cancel']";
-        String resultXpath = xpath1 + ticket.getTicketDepartFrom() + xpath2 + ticket.getTicketArriveAt() + xpath3;
-        By btnCancelTicketOfRoute = By.xpath(resultXpath);
-        return Utilities.findElement(btnCancelTicketOfRoute);
     }
 }
