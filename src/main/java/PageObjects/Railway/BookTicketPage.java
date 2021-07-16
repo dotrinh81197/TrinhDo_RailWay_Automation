@@ -1,16 +1,19 @@
 package PageObjects.Railway;
 
 import Common.Common.Utilities;
+import Common.Constant.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.Date;
 
 public class BookTicketPage {
     //locators
     private final By _comboBoxDepartDate = By.name("Date");
     private final By _comboBoxDepartStation = By.name("DepartStation");
     private final By _comboBoxArriveStation = By.name("ArriveStation");
-    private final By _comboBoxSeatType =  By.name("SeatType");
+    private final By _comboBoxSeatType = By.name("SeatType");
     private final By _comboBoxTicketAmount = By.name("TicketAmount");
     private final By _btnBookTicket = By.xpath("//input[@type='submit']");
     private final By _lblBookTicketSuccessMsg = By.xpath("//div[@id='content']//h1");
@@ -142,11 +145,24 @@ public class BookTicketPage {
         Utilities.scrollAndClickIntoView(getBtnBookTicket());
     }
 
-    private void fillBookTicketInfo(Ticket ticket) {
+    public void fillBookTicketInfo(Ticket ticket) {
         this.getDepartDate(ticket.ticketDepartDate);
         this.getDepartStation(ticket.ticketDepartFrom);
         this.getArriveStation(ticket.ticketArriveAt);
         this.getSeatType(ticket.ticketSeatType);
         this.getTicketAmount(ticket.ticketTicketAmount);
+    }
+
+    public void bookTicketsSeveralTime(int ticketsNumber, Ticket ticket) {
+        for (int i = 0; i < ticketsNumber; i++) {
+            this.getDepartDate(Utilities.getTodayPlusDays(Constant.DAYS_NUMBER + i));
+            this.getDepartStation(ticket.ticketDepartFrom);
+            this.getArriveStation(ticket.ticketArriveAt);
+            this.getSeatType(ticket.ticketSeatType);
+            this.getTicketAmount(ticket.ticketTicketAmount);
+            Utilities.scrollAndClickIntoView(getBtnBookTicket());
+            GeneralPage generalPage = new GeneralPage();
+            generalPage.gotoBookTicketPage();
+        }
     }
 }

@@ -9,8 +9,9 @@ public class MyTicketPage {
     //locators
     private final By _rowsTicket = By.xpath("//tr[@class='OddRow' or @class='EvenRow']");
 
-    //cell_filter_DpStation : //td//select[@name='FilterDpStation']
-    // btn_apply_filter: //input[@value = 'Apply Filter']
+    private final By cell_filter_DpStation = By.xpath("//td//select[@name='FilterDpStation']");
+    private final By cell_filter_ArStation = By.xpath("//td//select[@name='FilterArStation']");
+    private final By btn_apply_filter = By.xpath("//input[@value = 'Apply Filter']");
 
     //elements
 
@@ -20,6 +21,18 @@ public class MyTicketPage {
         String resultXpath = xpath1 + row + xpath2;
         By btnCancelTicket = By.xpath(resultXpath);
         return Utilities.findElement(btnCancelTicket);
+    }
+
+    public WebElement getCellFilterDpStation(){
+        return Constant.WEBDRIVER.findElement(cell_filter_DpStation);
+    }
+
+    public WebElement getCellFilterArStation(){
+        return Constant.WEBDRIVER.findElement(cell_filter_ArStation);
+    }
+
+    public WebElement getBtnApplyFilter(){
+        return Constant.WEBDRIVER.findElement(btn_apply_filter);
     }
 
     //methods
@@ -38,5 +51,13 @@ public class MyTicketPage {
     public void cancelTicket(int row) {
         Utilities.scrollAndClickIntoView(this.getBtnCancelTicket(row));
         Constant.WEBDRIVER.switchTo().alert().accept();
+    }
+
+    public void filterBy(String departStation, String arriveStation, String departDate, String status) {
+
+    }
+
+    public void fillFilter(String departStation, String arriveStation, String departDate, String status) {
+
     }
 }

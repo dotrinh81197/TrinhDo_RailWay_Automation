@@ -55,24 +55,23 @@ public class Utilities {
         return formatter.format(date);
     }
 
-    public static WebElement findElement(By Locator){
+    public static WebElement findElement(By Locator) {
         WebElement element = null;
         try {
             element = Constant.WEBDRIVER.findElement(Locator);
 
-        }catch (NoSuchElementException | StaleElementReferenceException e){
+        } catch (NoSuchElementException | StaleElementReferenceException e) {
             element = null;
             System.out.println(e.getMessage());
         }
         return element;
     }
 
-    public static boolean isElementExist(By Locator){
-        try{
+    public static boolean isElementExist(By Locator) {
+        try {
             Constant.WEBDRIVER.findElement(Locator);
             return true;
-        }
-        catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
 
             return false;
         }
