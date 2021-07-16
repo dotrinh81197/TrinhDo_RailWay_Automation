@@ -29,7 +29,6 @@ public class BookTicketTest extends TestBase {
     @AfterMethod
     public void afterMethod() {
         System.out.println("Post-condition");
-        homePage.gotoMyTicketPage();
         homePage.logout();
     }
 
