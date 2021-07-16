@@ -1,6 +1,7 @@
 package PageObjects.Railway;
 
 import Common.Common.Utilities;
+import Common.Constant.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -10,7 +11,7 @@ public class BookTicketPage {
     private final By _comboBoxDepartDate = By.name("Date");
     private final By _comboBoxDepartStation = By.name("DepartStation");
     private final By _comboBoxArriveStation = By.name("ArriveStation");
-    private final By _comboBoxSeatType =  By.name("SeatType");
+    private final By _comboBoxSeatType = By.name("SeatType");
     private final By _comboBoxTicketAmount = By.name("TicketAmount");
     private final By _btnBookTicket = By.xpath("//input[@type='submit']");
     private final By _lblBookTicketSuccessMsg = By.xpath("//div[@id='content']//h1");
@@ -81,6 +82,7 @@ public class BookTicketPage {
         Utilities.scrollAndClickIntoView(this.getDepartStationElement());
         Select departStation = new Select(Utilities.findElement(_comboBoxDepartStation));
         departStation.selectByVisibleText(value);
+
     }
 
     public void getArriveStation(String value) {
@@ -137,16 +139,41 @@ public class BookTicketPage {
         return departDate.getFirstSelectedOption().getText();
     }
 
+    public String getSelectedOptionSeatType() {
+        Utilities.scrollAndClickIntoView(this.getSeatTypeElement());
+        Select departDate = new Select(Utilities.findElement(_comboBoxSeatType));
+        return departDate.getFirstSelectedOption().getText();
+    }
+
+
     public void submitBookTicketInfo(Ticket ticket) {
         this.fillBookTicketInfo(ticket);
         Utilities.scrollAndClickIntoView(getBtnBookTicket());
     }
 
-    private void fillBookTicketInfo(Ticket ticket) {
+    public void fillBookTicketInfo(Ticket ticket) {
         this.getDepartDate(ticket.ticketDepartDate);
         this.getDepartStation(ticket.ticketDepartFrom);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         this.getArriveStation(ticket.ticketArriveAt);
         this.getSeatType(ticket.ticketSeatType);
         this.getTicketAmount(ticket.ticketTicketAmount);
+    }
+
+    public void bookTicketsSeveralTimes(int ticketsNumber, Ticket ticket) {
+        for (int i = 0; i < ticketsNumber; i++) {
+            this.getDepartDate(Utilities.getTodayPlusDays(Constant.DAYS_NUMBER + i));
+            this.getDepartStation(ticket.ticketDepartFrom);
+            this.getArriveStation(ticket.ticketArriveAt);
+            this.getSeatType(ticket.ticketSeatType);
+            this.getTicketAmount(ticket.ticketTicketAmount);
+            Utilities.scrollAndClickIntoView(getBtnBookTicket());
+            GeneralPage generalPage = new GeneralPage();
+            generalPage.gotoBookTicketPage();
+        }
     }
 }

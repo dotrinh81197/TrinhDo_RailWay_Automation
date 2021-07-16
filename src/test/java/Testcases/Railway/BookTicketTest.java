@@ -35,7 +35,7 @@ public class BookTicketTest extends TestBase {
         String departDate = Utilities.getTodayPlusDays(Constant.DAYS_NUMBER);
         String departFrom = Constant.DATA_BOOK_DEPART_FROM;
         String arriveAt = Constant.DATA_BOOK_ARRIVE_AT;
-        String seatType = Constant.DATA_SEAT_TYPE;
+        String seatType = Constant.DATA_SEAT_TYPE_SBC;
         String ticketAmount = Constant.DATA_TICKET_AMOUNT;
 
         Ticket ticket = new Ticket(departDate, departFrom, arriveAt, seatType, ticketAmount);
@@ -74,7 +74,7 @@ public class BookTicketTest extends TestBase {
         String departDate = Utilities.getTodayPlusDays(Constant.DAYS_NUMBER);
         String departFrom = Constant.DATA_BOOK_DEPART_FROM;
         String arriveAt = Constant.DATA_BOOK_ARRIVE_AT;
-        String seatType = Constant.DATA_SEAT_TYPE;
+        String seatType = Constant.DATA_SEAT_TYPE_SBC;
         String ticketAmount = Constant.DATA_TICKET_AMOUNT;
 
         Ticket ticket = new Ticket(departDate, departFrom, arriveAt, seatType, ticketAmount);
