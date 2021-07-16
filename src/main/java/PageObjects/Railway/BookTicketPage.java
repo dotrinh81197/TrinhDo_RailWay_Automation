@@ -6,8 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.Date;
-
 public class BookTicketPage {
     //locators
     private final By _comboBoxDepartDate = By.name("Date");
@@ -84,6 +82,7 @@ public class BookTicketPage {
         Utilities.scrollAndClickIntoView(this.getDepartStationElement());
         Select departStation = new Select(Utilities.findElement(_comboBoxDepartStation));
         departStation.selectByVisibleText(value);
+
     }
 
     public void getArriveStation(String value) {
@@ -140,6 +139,13 @@ public class BookTicketPage {
         return departDate.getFirstSelectedOption().getText();
     }
 
+    public String getSelectedOptionSeatType() {
+        Utilities.scrollAndClickIntoView(this.getSeatTypeElement());
+        Select departDate = new Select(Utilities.findElement(_comboBoxSeatType));
+        return departDate.getFirstSelectedOption().getText();
+    }
+
+
     public void submitBookTicketInfo(Ticket ticket) {
         this.fillBookTicketInfo(ticket);
         Utilities.scrollAndClickIntoView(getBtnBookTicket());
@@ -148,12 +154,17 @@ public class BookTicketPage {
     public void fillBookTicketInfo(Ticket ticket) {
         this.getDepartDate(ticket.ticketDepartDate);
         this.getDepartStation(ticket.ticketDepartFrom);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         this.getArriveStation(ticket.ticketArriveAt);
         this.getSeatType(ticket.ticketSeatType);
         this.getTicketAmount(ticket.ticketTicketAmount);
     }
 
-    public void bookTicketsSeveralTime(int ticketsNumber, Ticket ticket) {
+    public void bookTicketsSeveralTimes(int ticketsNumber, Ticket ticket) {
         for (int i = 0; i < ticketsNumber; i++) {
             this.getDepartDate(Utilities.getTodayPlusDays(Constant.DAYS_NUMBER + i));
             this.getDepartStation(ticket.ticketDepartFrom);

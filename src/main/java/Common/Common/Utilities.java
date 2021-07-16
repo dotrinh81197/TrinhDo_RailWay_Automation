@@ -61,7 +61,6 @@ public class Utilities {
             element = Constant.WEBDRIVER.findElement(Locator);
 
         } catch (NoSuchElementException | StaleElementReferenceException e) {
-            element = null;
             System.out.println(e.getMessage());
         }
         return element;

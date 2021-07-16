@@ -10,10 +10,10 @@ public class Constant {
     public static final String VALID_PASSWORD = "12345678";
     public static final String NEW_PASSWORD = "12345678";
     public static final Integer TIMES_LOGIN = 4;
-    public static final Integer DAYS_NUMBER = 3;
+    public static final Integer DAYS_NUMBER = 4;
     public static final Integer ROW_TICKET = 2;
+    public static final String TICKET_AMOUNT = "2";
     public static final String MAIN_EMAIL = "example+";
-
 
     public static String MSG_WELCOME_USER = "Welcome %s";
     public static final String MSG_BLANK_USER_PASSWORD = "There was a problem with your login and/or errors exist in your form.";
@@ -32,11 +32,17 @@ public class Constant {
     public static final String DATA_REGISTER_INVALID_CONFIRM_PASSWORD = "12348";
     public static final String DATA_REGISTER_PID = "12345678";
     public static final String DATA_EMPTY_PID = "";
+    public static final String DATA_DEPART_FROM = "Quảng Ngãi";
+    public static final String DATA_ARRIVE_AT = "Huế";
     public static final String DATA_BOOK_DEPART_FROM = "Sài Gòn";
     public static final String DATA_BOOK_ARRIVE_AT = "Nha Trang";
     public static final String DATA_CHECK_DEPART_FROM = "Huế";
     public static final String DATA_CHECK_ARRIVE_AT = "Sài Gòn";
-    public static final String DATA_SEAT_TYPE = "Soft bed with air conditioner";
+    public static final String DATA_CHECK_PRICE_ARRIVE_AT = "Nha Trang";
+    public static final String DATA_CHECK_PRICE_DEPART_FROM  = "Huế";
+    public static final String DATA_SEAT_TYPE_SBC = "Soft bed with air conditioner";
+    public static final String DATA_SEAT_TYPE_SB = "Soft bed";
+    public static final String DATA_SEAT_TYPE_HB = "Hard bed";
     public static final String DATA_TICKET_AMOUNT = "1";
 
 
