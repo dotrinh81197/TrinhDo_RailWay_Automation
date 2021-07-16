@@ -15,9 +15,14 @@ public class BookTicketTest extends TestBase {
     public void beforeMethod() {
         System.out.println("Pre-condition");
         homePage.open();
+        homePage.gotoRegisterPage();
+        RegisterPage registerPage = new RegisterPage();
+        String email = Utilities.generateRandomEmail();
+        registerPage.registerAccount(email, Constant.VALID_PASSWORD, Constant.VALID_PASSWORD, Constant.DATA_REGISTER_PID);
+
         homePage.gotoLoginPage();
         LoginPage loginPage = new LoginPage();
-        loginPage.login(Constant.USERNAME, Constant.VALID_PASSWORD);
+        loginPage.login(email, Constant.VALID_PASSWORD);
         Assert.assertTrue(Utilities.isAtPage("Home"), "Login not successfully");
     }
 
@@ -25,8 +30,6 @@ public class BookTicketTest extends TestBase {
     public void afterMethod() {
         System.out.println("Post-condition");
         homePage.gotoMyTicketPage();
-        MyTicketPage myTicketPage = new MyTicketPage();
-        myTicketPage.cancelAllTicket();
         homePage.logout();
     }
 

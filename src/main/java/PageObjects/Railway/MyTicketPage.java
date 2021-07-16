@@ -97,15 +97,9 @@ public class MyTicketPage {
         this.getBtnApplyFilter().click();
     }
 
-    public void cancelAllTicket() {
-        for (int i = 0; i < rows; i++) {
-            cancelTicket(2);
-        }
-    }
+    public boolean checkTicketDisplayWithFilter(String departDate) {
 
-    public boolean checkTicketDisplayWithFilter(String departDate){
-
-        By tickets =By.xpath("//table[@class='MyTable']//td[text()='"+ departDate +"']/..");
+        By tickets = By.xpath("//table[@class='MyTable']//td[text()='" + departDate + "']/..");
         return Utilities.findElement(tickets) != null;
 
     }
