@@ -1,4 +1,7 @@
-# TrinhDo_RailWay_Automation
-Chrome version:  91.0.4472.124 
+PRE_TEST SELENIUM 2
 
-Chrome driver version 91
+Open my project by IntelliJ 
+Click build project and build Maven
+
+Find testcase in src/java/Testcases/PreTestSelenium2 
+Run testcase

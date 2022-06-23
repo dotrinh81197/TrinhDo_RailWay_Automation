@@ -1,0 +1,22 @@
+[INFO ] 22-06-2022 21:31:22 [main] Log - Step1: Navigate to google website
+[INFO ] 22-06-2022 21:31:23 [main] Log - Step2: Verify google search box display
+[INFO ] 22-06-2022 21:31:23 [main] Log - Step3: Search for value
+[INFO ] 22-06-2022 21:41:10 [main] Log - Step1: Navigate to google website
+[INFO ] 22-06-2022 21:41:11 [main] Log - Step2: Verify google search box display
+[INFO ] 22-06-2022 21:41:12 [main] Log - Step3: Search for value
+[INFO ] 22-06-2022 21:41:36 [main] Log - Step1: Navigate to google website
+[INFO ] 22-06-2022 21:41:37 [main] Log - Step2: Verify google search box display
+[INFO ] 22-06-2022 21:41:37 [main] Log - Step3: Search for value
+[INFO ] 22-06-2022 21:44:12 [main] Log - Step1: Navigate to google website
+[INFO ] 22-06-2022 21:44:13 [main] Log - Step2: Verify google search box display
+[INFO ] 22-06-2022 21:44:14 [main] Log - Step3: Search for value
+[INFO ] 22-06-2022 21:45:27 [main] Log - Step1: Navigate to google website
+[INFO ] 22-06-2022 21:45:28 [main] Log - Step2: Verify google search box display
+[INFO ] 22-06-2022 21:45:28 [main] Log - Step3: Search for value
+[INFO ] 22-06-2022 21:51:16 [main] Log - Step1: Navigate to google website
+[INFO ] 22-06-2022 21:51:17 [main] Log - Step2: Verify google search box display
+[INFO ] 22-06-2022 21:51:17 [main] Log - Step3: Search for value
+[INFO ] 22-06-2022 22:05:33 [main] Log - Step1: Navigate to google website
+[INFO ] 22-06-2022 22:05:34 [main] Log - Step2: Verify google search box display
+[INFO ] 22-06-2022 22:05:35 [main] Log - Step3: Search for value
+[INFO ] 22-06-2022 22:05:37 [main] Log - Step4: verify search string remained on the search box

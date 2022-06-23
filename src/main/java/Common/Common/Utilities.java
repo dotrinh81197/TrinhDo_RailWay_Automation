@@ -2,6 +2,8 @@ package Common.Common;
 
 import Common.Constant.Constant;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,49 +12,14 @@ import java.util.Random;
 
 public class Utilities {
 
-    protected static final String alpha = "abcdefghijklmnopqrstvwxyzabcedfABCDEFGHJKLMNOPQRSTVWXYZ";
-    protected static final String digits = "0123456789";
-
     public static String getWebDriverPath() {
-        return "src/main/resources/WebDriver/chromedriver.exe";
-    }
-
-    public static boolean isAtPage(String pageName) {
-        if (pageName.equals("Home")) {
-            String titleHomePage = "Selenium Automation";
-            return Constant.WEBDRIVER.getTitle().contains(titleHomePage);
-        }
-        return Constant.WEBDRIVER.getTitle().contains(pageName);
-    }
-
-    public static String generateRandomEmail() {
-        StringBuilder emailRandom = new StringBuilder();
-
-        Random rnd = new Random();
-        for (int i = 0; i < 6; i++) {
-            int indexText = rnd.nextInt(alpha.length() - 1);
-            emailRandom.append(alpha.charAt(indexText));
-            int indexNumber = rnd.nextInt(digits.length() - 1);
-            emailRandom.append(digits.charAt(indexNumber));
-        }
-        return Constant.MAIN_EMAIL + emailRandom.append("@gmail.com");
+        return "src/test/resources/WebDriver/chromedriver_v101.exe";
     }
 
     public static void scrollAndClickIntoView(WebElement element) {
         JavascriptExecutor je = Constant.WEBDRIVER;
         je.executeScript("arguments[0].scrollIntoView(true);", element);
         element.click();
-    }
-
-    public static String getTodayPlusDays(int daysNumber) {
-
-        Date date = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(date);
-        c.add(Calendar.DATE, daysNumber);
-        date = c.getTime();
-        SimpleDateFormat formatter = new SimpleDateFormat("M/dd/yyyy");
-        return formatter.format(date);
     }
 
     public static WebElement findElement(By Locator) {
@@ -75,4 +42,32 @@ public class Utilities {
             return false;
         }
     }
+
+    public static void clickElement(WebElement element) {
+        try {
+            element.click();
+        } catch (NoSuchElementException e) {
+            Log.error("Can't click element");
+        }
+    }
+
+    public static boolean checkControlExit(WebElement element) {
+        try {
+            if (element.isDisplayed())
+                return true;
+            else return false;
+        } catch (NoSuchElementException e) {
+
+            return false;
+        }
+    }
+
+    public static void waitForControl(WebElement controlName, int waitTime) {
+        try {
+            new WebDriverWait(Constant.WEBDRIVER, waitTime).until(ExpectedConditions.visibilityOf(controlName));
+        } catch (Exception e) {
+
+        }
+    }
+
 }
