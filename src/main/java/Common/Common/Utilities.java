@@ -5,21 +5,19 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
 
 public class Utilities {
 
     public static String getWebDriverPath() {
-        return "src/test/resources/WebDriver/chromedriver_v101.exe";
+        return "src/test/resources/WebDriver/chromedriver_v102.exe";
     }
 
-    public static void scrollAndClickIntoView(WebElement element) {
+    public static void scrollIntoView(WebElement element) {
         JavascriptExecutor je = Constant.WEBDRIVER;
         je.executeScript("arguments[0].scrollIntoView(true);", element);
-        element.click();
+//        element.click();
     }
 
     public static WebElement findElement(By Locator) {
@@ -56,7 +54,7 @@ public class Utilities {
             if (element.isDisplayed())
                 return true;
             else return false;
-        } catch (NoSuchElementException e) {
+        } catch (Exception e) {
 
             return false;
         }
@@ -70,4 +68,20 @@ public class Utilities {
         }
     }
 
+    public static String upperFirstLetter(String s) {
+        if (s == null || s.length() == 0)
+            return s;
+        char upperCaseFirstLetter = java.lang.Character.toUpperCase(s.charAt(0));
+        String subString = s.substring(1);
+
+        return upperCaseFirstLetter + subString;
+    }
+
+    public static void waitTime(int time) {
+        Constant.WEBDRIVER.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
+    }
 }
+
+
+
+

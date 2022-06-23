@@ -15,7 +15,6 @@ public class TestBase {
         System.setProperty("webdriver.chrome.driver", Utilities.getWebDriverPath());
         Constant.WEBDRIVER = new ChromeDriver();
         Constant.WEBDRIVER.manage().window().maximize();
-//        Constant.WEBDRIVER.navigate().refresh();
     }
 
     @AfterClass
