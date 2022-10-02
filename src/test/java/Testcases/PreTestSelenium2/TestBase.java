@@ -1,6 +1,5 @@
 package Testcases.PreTestSelenium2;
 
-import Common.Common.Utilities;
 import Common.Constant.Constant;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -9,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
-import java.io.File;
+import static Common.Constant.Constant.CHROME_DRIVER_PATH;
 
 public class TestBase {
     public static ExtentReports extent;
@@ -21,7 +20,6 @@ public class TestBase {
         extent
                 .addSystemInfo("Environment", "Automation Testing")
                 .addSystemInfo("User Name", "Trinh Do");
-        extent.loadConfig(new File(Common.Common.Utilities.getProjectPath() + "/extent-config.xml"));
     }
 
     @AfterTest
@@ -33,7 +31,7 @@ public class TestBase {
 
     @BeforeClass
     public void beforeClass() {
-        System.setProperty("webdriver.chrome.driver", Utilities.getWebDriverPath());
+        System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
         Constant.WEBDRIVER = new ChromeDriver();
         Constant.WEBDRIVER.manage().window().maximize();
     }
@@ -41,11 +39,6 @@ public class TestBase {
     @AfterClass
     public void afterClass() {
         Constant.WEBDRIVER.quit();
-    }
-
-    @BeforeMethod
-    public void beforeMethod() {
-        System.out.println("Pre-condition");
     }
 
     @AfterMethod

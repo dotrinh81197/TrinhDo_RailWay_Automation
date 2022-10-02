@@ -6,17 +6,14 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class ResultPage extends Utilities {
+
     //locators
-    public final By peopleAlsoAskSection = By.xpath("//span[text()='People also ask']//ancestor::div[@class='Wt5Tfe']");
-    private final By google_BigLogo = By.xpath("//img[@class='lnXdpd']");
-    private final By button_search = By.xpath("//img[@class='gNO89b']");
-    private final By button_firstPage = By.xpath("//img[@class='RNmpXc']");
-    private final By link_LanguageEnglish = By.xpath("//div[@id='SIvCob']//a[text()='English']");
-    public final By firstResult = By.xpath("(//div[@class='yuRUbf']//h3[@class='LC20lb MBeuO DKV0Md'])[1]");
-    public final By peopleFirstQuestion = By.xpath("(//span[text()='People also ask']//ancestor::div[@class='Wt5Tfe']//div[@class='iDjcJe IX9Lgd wwB5gf'])[1]");
-    public final By label_topStory = By.xpath("//div[@class='iJ1Kvb']//h3[text()='Top stories']");
-    public final By label_firstStory = By.xpath("(//div[@class='mCBkyc tNxQIb ynAwRc nDgy9d'])[1]");
-    public final By firstVideo = By.xpath("(//div[@class='uOId3b'])[1]");
+    private final By peopleAlsoAskSection = By.xpath("//span[text()='People also ask']//ancestor::div[@class='Wt5Tfe']");
+    private final By firstResult = By.xpath("(//div[@class='FGpTBd']//h3[@class='H1u2de'])");
+    private final By peopleFirstQuestion = By.xpath("(//span[text()='People also ask']//ancestor::div[@class='Wt5Tfe']//div[@class='iDjcJe IX9Lgd wwB5gf'])[1]");
+    private final By topStoryLabel = By.xpath("//div[@class='iJ1Kvb']//h3[text()='Top stories']");
+    private final By firstStoryLabel = By.xpath("(//div[@class='mCBkyc tNxQIb ynAwRc nDgy9d'])[1]");
+    private final By firstVideo = By.xpath("(//div[@class='uOId3b'])[1]");
 
     String videosTitles = "(//div[@class='mLmaBd']//div[@role='heading'])[%d]";
 
@@ -26,14 +23,23 @@ public class ResultPage extends Utilities {
         return findElement(peopleFirstQuestion);
     }
 
+    public WebElement getFirstResult() {
+        return findElement(firstResult);
+    }
+
     private WebElement getFirstStory() {
-        return findElement(label_firstStory);
+        return findElement(firstStoryLabel);
     }
 
     public WebElement getFirstVideo() {
-         return findElement(firstVideo);
+        return findElement(firstVideo);
     }
 
+    public boolean doesFirstResultDisplay() {
+        if (Utilities.checkControlExit(this.getFirstResult()) == true) {
+            return true;
+        } else return false;
+    }
 
     //methods
     public void checkPeopleAlsoAskSection(String searchValue) {
@@ -44,7 +50,7 @@ public class ResultPage extends Utilities {
                 Assert.assertTrue(firstQuestion.contains(searchValue.toLowerCase()), "First question contains search value" + searchValue);
             }
         } catch (Exception e) {
-          
+
         }
     }
 
@@ -56,20 +62,31 @@ public class ResultPage extends Utilities {
 
             }
         } catch (Exception e) {
-          
+
         }
     }
 
     public void checkTopStoriesSection(String searchValue) {
         try {
-            if (isElementExist(label_topStory)) {
-                Assert.assertTrue(isElementExist(label_firstStory));
+            if (isElementExist(topStoryLabel)) {
+                Assert.assertTrue(isElementExist(firstStoryLabel));
                 String firstQuestion = getFirstStory().getText().toLowerCase();
                 Assert.assertTrue(firstQuestion.contains(searchValue.toLowerCase()), "First story contains search value" + searchValue);
             }
         } catch (Exception e) {
-          
+
         }
+    }
+
+    public void open1stVideo() {
+        Utilities.waitForControl(getFirstVideo());
+        getFirstVideo().click();
+    }
+
+    public String getTitleVideo() {
+        String videoTitle = getFirstVideo().getText().trim();
+        return videoTitle;
+
     }
 
 }

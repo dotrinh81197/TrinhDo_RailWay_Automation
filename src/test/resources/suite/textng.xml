@@ -9,7 +9,8 @@
     <test name="Suite">
 
         <classes>
-            <class name="Testcases.PreTestSelenium2.Google_Search_Page_Validation"/>
+            <class name="Testcases.PreTestSelenium2.TC01_Google_Search_Page_Validation"/>
+            <class name="Testcases.PreTestSelenium2.TC02_Youtube_Page_Validation"/>
         </classes>
     </test> <!-- Test -->
 

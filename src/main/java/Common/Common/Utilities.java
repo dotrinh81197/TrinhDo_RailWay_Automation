@@ -7,12 +7,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
+import static Common.Constant.Constant.WAIT_TIME_60_SEC;
 
 public class Utilities {
-
-    public static String getWebDriverPath() {
-        return "src/test/resources/drivers/chromedriver.exe";
-    }
 
     public static String getProjectPath() {
         return System.getProperty("user.dir");
@@ -47,6 +44,7 @@ public class Utilities {
         try {
             element.click();
         } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -60,24 +58,12 @@ public class Utilities {
         }
     }
 
-    public static void waitForControl(WebElement controlName, int waitTime) {
-        try {
-            new WebDriverWait(Constant.WEBDRIVER, waitTime).until(ExpectedConditions.visibilityOf(controlName));
-        } catch (Exception e) {
-        }
-    }
-
-    public static String upperFirstLetter(String s) {
-        if (s == null || s.length() == 0)
-            return s;
-        char upperCaseFirstLetter = java.lang.Character.toUpperCase(s.charAt(0));
-        String subString = s.substring(1);
-
-        return upperCaseFirstLetter + subString;
-    }
-
     public static void waitTime(int time) {
         Constant.WEBDRIVER.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
+    }
+
+    public static void waitForControl(WebElement controlName){
+        new WebDriverWait(Constant.WEBDRIVER,WAIT_TIME_60_SEC).until(ExpectedConditions.visibilityOf(controlName));
     }
 }
 

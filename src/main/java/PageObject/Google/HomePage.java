@@ -7,31 +7,31 @@ import org.openqa.selenium.WebElement;
 public class HomePage {
 
     //locators
-    public final By search_box = By.xpath("//input[@class='gLFyf gsfi']");
-    private final By google_BigLogo = By.xpath("//img[@class='lnXdpd']");
-    private final By button_search = By.xpath("//img[@class='gNO89b']");
-    private final By button_firstPage = By.xpath("//img[@class='RNmpXc']");
-    private final By link_LanguageEnglish = By.xpath("//div[@id='SIvCob']//a[text()='English']");
+    private final By searchTextBox = By.xpath("//input[@class='gLFyf gsfi']");
+    private final By logo = By.xpath("//img[@class='lnXdpd']");
+    private final By searchButton = By.xpath("//img[@class='gNO89b']");
+    private final By firstPageButton = By.xpath("//img[@class='RNmpXc']");
+    private final By languageEnglishLink = By.xpath("//div[@id='SIvCob']//a[text()='English']");
 
     //elements
     public WebElement getSearchBox() {
-        return Utilities.findElement(search_box);
+        return Utilities.findElement(searchTextBox);
     }
 
     protected WebElement getBtnSearch() {
-        return Utilities.findElement(button_search);
+        return Utilities.findElement(searchButton);
     }
 
     public WebElement getGoogleBigLogo() {
-        return Utilities.findElement(google_BigLogo);
+        return Utilities.findElement(logo);
     }
 
     protected WebElement getBtnFirstPage() {
-        return Utilities.findElement(button_firstPage);
+        return Utilities.findElement(firstPageButton);
     }
 
-    public WebElement getLink_LanguageEnglish() {
-        return Utilities.findElement(link_LanguageEnglish);
+    public WebElement getLanguageEnglishLink() {
+        return Utilities.findElement(languageEnglishLink);
     }
 
 
@@ -45,8 +45,8 @@ public class HomePage {
     }
 
     public void switchToEnglish() {
-        if (Utilities.isElementExist(link_LanguageEnglish)) {
-            Utilities.clickElement(this.getLink_LanguageEnglish());
+        if (Utilities.isElementExist(languageEnglishLink)) {
+            Utilities.clickElement(this.getLanguageEnglishLink());
         }
     }
 
